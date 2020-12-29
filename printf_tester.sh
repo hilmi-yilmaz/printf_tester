@@ -53,7 +53,10 @@ echo "Running own program"
 gcc $FLAGS $OWN_MAIN source_files/libftprintf.a -o $OUTPUT && ./$OUTPUT >> logs/results/result_2
 
 #Check differences
-diff logs/results/result_1 logs/results/result_2
+diff logs/results/result_1 logs/results/result_2 >> logs/diff/diff_1
+if [[ "$?" != 0 ]]; then
+	echo "There are differences between your output and the C output. Check logs/diff/."
+fi
 
 #Delete the executable
 rm $OUTPUT
