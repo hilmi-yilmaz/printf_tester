@@ -1,9 +1,12 @@
 #!/bin/bash
 
+CC=clang
 FLAGS="-Wall -Wextra -Werror -fsanitize=address -g"
 C_MAIN="mains/id_C_main.c"
 OWN_MAIN="mains/id_ft_main.c"
 OUTPUT=output
+C_MAIN_FILES=("id_C_main.c")
+FT_MAIN_FILES=("id_ft_main.c")
 
 #Create the logs directory if it does not exist yet.
 
@@ -40,23 +43,46 @@ if [[ ! -f source_files/libftprintf.a ]]; then
 	exit 1
 fi
 
-#Run the program with the C function and redirect the output to the results directory
-echo "Running the C program"
-gcc $FLAGS $C_MAIN -o $OUTPUT && ./$OUTPUT >> logs/results/result_1
-if [[ "$?" != 0 ]]; then
-	echo "Error on compilation."
-	exit 1
-fi
+#Loop over the "C_MAIN_FILES" and "FT_MAIN_FILES" arrays, execute the programs and check for differences.
+for i in ${!C_MAIN_FILES[@]}; do
+	
+	#Create a variable which will store a prefix to be used for logs file names
+	c_prefix=$(echo ${C_MAIN_FILES[$i]} | cut -d '_' -f -2)
+	ft_prefix=$(echo ${FT_MAIN_FILES[$i]} | cut -d '_' -f -2)
+	spec_prefix=$(echo ${FT_MAIN_FILES[$i]} | cut -d '_' -f 1)
 
-#Run the program with own function and redirect the output to the results directory
-echo "Running own program"
-gcc $FLAGS $OWN_MAIN source_files/libftprintf.a -o $OUTPUT && ./$OUTPUT >> logs/results/result_2
+	#Run the program with the C function and redirect the output to the 'logs/results' directory
+	echo "Running the C program"
+	$CC $FLAGS mains/${C_MAIN_FILES[$i]} -o $OUTPUT && ./$OUTPUT >> logs/results/printed_${c_prefix}
+	if [[ "$?" != 0 ]]; then
+		echo "Error on compilation. Fix these errors before continuing."
+		exit 1
+	fi
 
-#Check differences
-diff logs/results/result_1 logs/results/result_2 >> logs/diff/diff_1
-if [[ "$?" != 0 ]]; then
-	echo "There are differences between your output and the C output. Check logs/diff/."
-fi
+	#Run the program with own function and redirect the output to the 'logs/results' directory
+	echo "Running own program"
+	$CC $FLAGS mains/${FT_MAIN_FILES[$i]} source_files/libftprintf.a -o $OUTPUT && ./$OUTPUT >> logs/results/printed_${ft_prefix}
+	if [[ "$?" != 0 ]]; then
+		echo "Error on compilation. Fix these errors before continuing."
+		exit 1
+	fi
+
+	#Check differences in printed text
+	diff logs/results/printed_${c_prefix} logs/results/printed_${ft_prefix} >> logs/diff/${spec_prefix}
+	if [[ "$?" != 0 ]]; then
+		echo "There are differences between your output and the C output. Check logs/diff/$spec_prefix."
+	else
+		echo "Passed d, i printed test."
+	fi
+
+	#Check differences in return values
+	diff logs/results/return_val_${c_prefix} logs/results/return_val_${ft_prefix} >> logs/diff/${spec_prefix}
+	if [[ "$?" != 0 ]]; then
+		echo "There are differences between your return values  and the C return values. Check logs/diff/."
+	else
+		echo "Passed d, i return values test."
+	fi
+done
 
 #Delete the executable
 rm $OUTPUT

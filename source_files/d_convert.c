@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/22 20:20:31 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2020/12/27 17:38:16 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2020/12/30 09:59:28 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,9 @@ char	*create_array(int nb, t_info *info, int len_nb)
 	if (nb == 0 && info->prec == -1)
 		len_str = 1;
 	if (nb == 0 && info->prec == 0)
-		len_str = 0;
+		len_str = info->width;
 	if (nb < 0 && info->prec >= len_nb && info->prec >= info->width)
 		len_str++;
-	if (info->prec == -1)
-		info->prec = 0;
 	str = (char *)malloc(sizeof(char) * len_str + 1);
 	if (str == NULL)
 	{
@@ -121,9 +119,14 @@ void	fill_zeros(char *str, t_info *info, int nb, int base)
 {
 	int i;
 	int j;
+	int	prec;
 
+	if (info->prec == -1)
+		prec = 0;
+	else
+		prec = info->prec;
 	if (info->dash == 0)
-		i = ft_strlen(str) - info->prec;
+		i = ft_strlen(str) - prec;
 	else
 	{
 		if (nb < 0)
@@ -132,7 +135,7 @@ void	fill_zeros(char *str, t_info *info, int nb, int base)
 			i = 0;
 	}
 	j = 0;
-	while (*(str + i) != '\0' && (j < info->prec || j < ft_nblen(nb, base)))
+	while (*(str + i) != '\0' && (j < prec || j < ft_nblen(nb, base)))
 	{
 		*(str + i) = '0';
 		i++;
@@ -169,7 +172,7 @@ void	fill_nb(char *str, char *str_nb, t_info *info, int nb)
 		i--;
 	while (j >= 0 && *(str_nb + j) != '-')
 	{
-		if (*str == '\0')
+		if (*str == '\0' || (info->prec == 0 && nb == 0))
 			break ;
 		*(str + i) = *(str_nb + j);
 		i--;
