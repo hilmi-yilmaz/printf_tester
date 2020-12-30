@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CC=clang
-FLAGS="-Wall -Wextra -Werror -fsanitize=address -g"
+FLAGS="-Wall -Wextra -Werror"
 C_MAIN="mains/id_C_main.c"
 OWN_MAIN="mains/id_ft_main.c"
 OUTPUT=output
@@ -31,12 +31,22 @@ if [[ ! -d logs/results ]]; then
 	echo "logs/results directory does not exists yet. Creating one..."
 	mkdir logs/results
 else
-	echo "logs/diff directory exists. Deleting contents..."
+	echo "logs/results directory exists. Deleting contents..."
 	rm -f logs/results/*
 fi
 
+#Create the valgrind directory inside the logs directory if it does not exists yet. If it does exists, delete the contents.
+
+if [[ ! -d logs/valgrind ]]; then
+	echo "logs/valgrind directory does not exists yet. Creating one..."
+	mkdir logs/valgrind
+else
+	echo "logs/valgrind directory exists. Deleting contents..."
+	rm -f logs/valgrind/*
+fi
+
 #Run "make" and check whether the libftprintf.a file is created
-make -C source_files > /dev/null
+make re -C source_files > /dev/null
 if [[ ! -f source_files/libftprintf.a ]]; then
 	echo "The library libftprintf.a is not created after running \"make\"."
 	echo "Make sure your Makefile creates the library first."
@@ -53,7 +63,7 @@ for i in ${!C_MAIN_FILES[@]}; do
 
 	#Run the program with the C function and redirect the output to the 'logs/results' directory
 	echo "Running the C program"
-	$CC $FLAGS mains/${C_MAIN_FILES[$i]} -o $OUTPUT && ./$OUTPUT >> logs/results/printed_${c_prefix}
+	$CC $FLAGS mains/${C_MAIN_FILES[$i]} -o $OUTPUT && ./$OUTPUT > logs/results/printed_${c_prefix}
 	if [[ "$?" != 0 ]]; then
 		echo "Error on compilation. Fix these errors before continuing."
 		exit 1
@@ -61,12 +71,13 @@ for i in ${!C_MAIN_FILES[@]}; do
 
 	#Run the program with own function and redirect the output to the 'logs/results' directory
 	echo "Running own program"
-	$CC $FLAGS mains/${FT_MAIN_FILES[$i]} source_files/libftprintf.a -o $OUTPUT && ./$OUTPUT >> logs/results/printed_${ft_prefix}
+	$CC $FLAGS -fsanitize=address -g mains/${FT_MAIN_FILES[$i]} source_files/libftprintf.a -o $OUTPUT
+	./$OUTPUT > logs/results/printed_${ft_prefix}
 	if [[ "$?" != 0 ]]; then
 		echo "Error on compilation. Fix these errors before continuing."
 		exit 1
 	fi
-
+	
 	#Check differences in printed text
 	diff logs/results/printed_${c_prefix} logs/results/printed_${ft_prefix} >> logs/diff/${spec_prefix}
 	if [[ "$?" != 0 ]]; then

@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/22 20:20:31 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2020/12/30 09:59:28 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2020/12/30 20:55:14 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	d_convert(va_list ap, t_info *info)
 	info->return_val = ft_strlen(str);
 	fill_zeros(str, info, nb, 10);
 	fill_nb(str, str_nb, info, nb);
+	if (nb == 0 && info->prec == 0)
+		ft_memset(str, ' ', ft_strlen(str));
 	ft_putstr_fd(str, 1);
 	free(str);
 	free(str_nb);
@@ -121,10 +123,9 @@ void	fill_zeros(char *str, t_info *info, int nb, int base)
 	int j;
 	int	prec;
 
+	prec = info->prec;
 	if (info->prec == -1)
 		prec = 0;
-	else
-		prec = info->prec;
 	if (info->dash == 0)
 		i = ft_strlen(str) - prec;
 	else
@@ -168,7 +169,7 @@ void	fill_nb(char *str, char *str_nb, t_info *info, int nb)
 	j = ft_strlen(str_nb) - 1;
 	if (i < 0)
 		i = 0;
-	while (*(str + i) == ' ' && info->dash == 1)
+	while (i >= 0 && *(str + i) == ' ' && info->dash == 1)
 		i--;
 	while (j >= 0 && *(str_nb + j) != '-')
 	{
@@ -181,6 +182,9 @@ void	fill_nb(char *str, char *str_nb, t_info *info, int nb)
 	i = 0;
 	while (ft_isdigit(*(str + i)) == 0 && nb < 0 && info->dash == 0)
 		i++;
+	i--;
+	if (i < 0)
+		i = 0;
 	if (nb < 0 && info->dash == 0)
-		*(str + i - 1) = '-';
+		*(str + i) = '-';
 }

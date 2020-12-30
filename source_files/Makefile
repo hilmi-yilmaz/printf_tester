@@ -6,14 +6,14 @@
 #    By: hyilmaz <hyilmaz@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/12/19 10:51:42 by hyilmaz       #+#    #+#                  #
-#    Updated: 2020/12/27 17:38:19 by hyilmaz       ########   odam.nl          #
+#    Updated: 2020/12/30 20:05:20 by hyilmaz       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=libftprintf.a
 LIBFT=libft/libft.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 SRC =	ft_printf.c \
 		set_info.c \
 		exceptions.c \
