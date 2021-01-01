@@ -2,11 +2,9 @@
 
 CC=clang
 FLAGS="-Wall -Wextra -Werror"
-C_MAIN="mains/id_C_main.c"
-OWN_MAIN="mains/id_ft_main.c"
 OUTPUT=output
-C_MAIN_FILES=("id_C_main.c")
-FT_MAIN_FILES=("id_ft_main.c")
+C_MAIN_FILES=("d_C_main.c" "i_C_main.c" "c_C_main.c" "s_C_main.c")
+FT_MAIN_FILES=("d_ft_main.c" "i_ft_main.c" "c_ft_main.c" "s_ft_main.c")
 
 #Create the logs directory if it does not exist yet.
 
@@ -63,7 +61,7 @@ for i in ${!C_MAIN_FILES[@]}; do
 
 	#Run the program with the C function and redirect the output to the 'logs/results' directory
 	echo "Running the C program"
-	$CC $FLAGS mains/${C_MAIN_FILES[$i]} -o $OUTPUT && ./$OUTPUT > logs/results/printed_${c_prefix}
+	$CC $FLAGS mains/${C_MAIN_FILES[$i]} -o $OUTPUT && ./$OUTPUT > logs/results/${c_prefix}_printed
 	if [[ "$?" != 0 ]]; then
 		echo "Error on compilation. Fix these errors before continuing."
 		exit 1
@@ -72,28 +70,30 @@ for i in ${!C_MAIN_FILES[@]}; do
 	#Run the program with own function and redirect the output to the 'logs/results' directory
 	echo "Running own program"
 	$CC $FLAGS -fsanitize=address -g mains/${FT_MAIN_FILES[$i]} source_files/libftprintf.a -o $OUTPUT
-	./$OUTPUT > logs/results/printed_${ft_prefix}
+	./$OUTPUT > logs/results/${ft_prefix}_printed
 	if [[ "$?" != 0 ]]; then
 		echo "Error on compilation. Fix these errors before continuing."
 		exit 1
 	fi
 	
 	#Check differences in printed text
-	diff logs/results/printed_${c_prefix} logs/results/printed_${ft_prefix} >> logs/diff/${spec_prefix}
+	diff logs/results/${c_prefix}_printed logs/results/${ft_prefix}_printed >> logs/diff/${spec_prefix}_printed_diff
 	if [[ "$?" != 0 ]]; then
 		echo "There are differences between your output and the C output. Check logs/diff/$spec_prefix."
 	else
-		echo "Passed d, i printed test."
+		echo "Passed $spec_prefix printed test."
 	fi
 
 	#Check differences in return values
-	diff logs/results/return_val_${c_prefix} logs/results/return_val_${ft_prefix} >> logs/diff/${spec_prefix}
+	diff logs/results/${c_prefix}_return_val logs/results/${ft_prefix}_return_val >> logs/diff/${spec_prefix}_return_val_diff
 	if [[ "$?" != 0 ]]; then
 		echo "There are differences between your return values  and the C return values. Check logs/diff/."
 	else
-		echo "Passed d, i return values test."
+		echo "Passed $spec_prefix return-values test."
 	fi
 done
+
+#Run a test with specific main and valgrind to check for memory errors.
 
 #Delete the executable
 rm $OUTPUT

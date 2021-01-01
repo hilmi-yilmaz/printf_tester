@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/30 18:36:16 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2020/12/30 20:58:44 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/01 15:57:19 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(void)
 	FILE *fd;
 	int res;
 
-	fd = fopen("logs/results/return_val_id_ft", "a+");
+	fd = fopen("logs/results/d_ft_return_val", "a+");
 	if (fd == NULL)
 	{
 		printf("Couldn't open file\n");
@@ -389,5 +389,24 @@ int		main(void)
 	res = ft_printf("%0*.*d\n", -8, -10, 12345);//151
 	fprintf(fd, "%d\n", res);
 
+	/*
+	** Printing with text
+	*/
+		
+	res = ft_printf("Hello i am %d years old and my length is %d cm\n", 22, 190);//152
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("Hello i am %10d years old and my length is %10d cm\n", 22, 190);//153
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("Hello i am %-10d years old and my length is %010d cm\n", 22, 190);//154
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("Hello i am %.10d years old and my length is %-.15d cm\n", 22, 190);//155
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("Hello i am %.d years old and my length is %-.d cm\n", 22, 190);//156
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("Hello i am %-20.10d years old and my length is %-10.20d cm\n", 22, 190);//157
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("Hello i am %20.10d years old and my length is %10.20d cm\n", 22, 190);//158
+	fprintf(fd, "%d\n", res);
+	
 	return (0);
 }
