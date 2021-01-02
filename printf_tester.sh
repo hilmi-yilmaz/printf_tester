@@ -59,8 +59,9 @@ for i in ${!C_MAIN_FILES[@]}; do
 	ft_prefix=$(echo ${FT_MAIN_FILES[$i]} | cut -d '_' -f -2)
 	spec_prefix=$(echo ${FT_MAIN_FILES[$i]} | cut -d '_' -f 1)
 
+	echo "Running $spec_prefix test..."
+	
 	#Run the program with the C function and redirect the output to the 'logs/results' directory
-	echo "Running the C program"
 	$CC $FLAGS mains/${C_MAIN_FILES[$i]} -o $OUTPUT && ./$OUTPUT > logs/results/${c_prefix}_printed
 	if [[ "$?" != 0 ]]; then
 		echo "Error on compilation. Fix these errors before continuing."
@@ -68,7 +69,6 @@ for i in ${!C_MAIN_FILES[@]}; do
 	fi
 
 	#Run the program with own function and redirect the output to the 'logs/results' directory
-	echo "Running own program"
 	$CC $FLAGS -fsanitize=address -g mains/${FT_MAIN_FILES[$i]} source_files/libftprintf.a -o $OUTPUT
 	./$OUTPUT > logs/results/${ft_prefix}_printed
 	if [[ "$?" != 0 ]]; then
@@ -77,7 +77,7 @@ for i in ${!C_MAIN_FILES[@]}; do
 	fi
 	
 	#Check differences in printed text
-	diff logs/results/${c_prefix}_printed logs/results/${ft_prefix}_printed >> logs/diff/${spec_prefix}_printed_diff
+	diff -a logs/results/${c_prefix}_printed logs/results/${ft_prefix}_printed >> logs/diff/${spec_prefix}_printed_diff
 	if [[ "$?" != 0 ]]; then
 		echo "There are differences between your output and the C output. Check logs/diff/$spec_prefix."
 	else
@@ -92,6 +92,18 @@ for i in ${!C_MAIN_FILES[@]}; do
 		echo "Passed $spec_prefix return-values test."
 	fi
 done
+
+
+#Testing with %p specifier
+echo "Running p test..."
+$CC $FLAGS -fsanitize=address -g mains/p_ft_C_main.c source_files/libftprintf.a -o $OUTPUT
+./$OUTPUT
+echo "Check the output of the %p specifier."
+while [[ "$REPLY" != "y" ]]; do
+	echo "Please type y to continue."
+	read -s -n 1
+done
+
 
 #Run a test with specific main and valgrind to check for memory errors.
 
