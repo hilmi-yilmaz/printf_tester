@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/30 18:36:08 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2021/01/01 15:57:02 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/03 12:06:11 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int		main(void)
 	fprintf(fd, "%d\n", res);
 
 	/*
-	** Printing with equal parameters with dash = 0
+	** Printing with equal parameters
 	** The parameters are: field width, precision and number length.
 	** The number length includes the '-' sign. 
 	** Thus -123 has length 4.
