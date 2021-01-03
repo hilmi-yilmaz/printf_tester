@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Colors
+GREEN="\e[1;32m"
+RED="\e[1;31m"
+BLUE="\e[1;34m"
+CYAN_B="\e[1;46m"
+BLUE_B="\e[1;44m"
+RESET="\e[0m"
+
+#Define variables
 CC=clang
 FLAGS="-Wall -Wextra -Werror"
 OUTPUT=output
@@ -9,55 +18,52 @@ FT_MAIN_FILES=("d_ft_main.c" "i_ft_main.c" "c_ft_main.c" "s_ft_main.c" "x_ft_mai
 #Create the logs directory if it does not exist yet.
 
 if [[ ! -d logs ]]; then
-	#echo "logs directory does not exist. Creating one..."
 	mkdir logs
 fi
 
 #Create the diff directory inside the logs directory if it does not exists yet. If it does exists, delete the contents.
 
 if [[ ! -d logs/diff ]]; then
-	#echo "logs/diff directory does not exists yet. Creating one..."
 	mkdir logs/diff
 else
-	#echo "logs/diff directory exists. Deleting contents..."
 	rm -f logs/diff/*
 fi
 
 #Create the results directory inside the logs directory if it does not exists yet. If it does exists, delete the contents.
 
 if [[ ! -d logs/results ]]; then
-	#echo "logs/results directory does not exists yet. Creating one..."
 	mkdir logs/results
 else
-	#echo "logs/results directory exists. Deleting contents..."
 	rm -f logs/results/*
 fi
 
 #Create the valgrind directory inside the logs directory if it does not exists yet. If it does exists, delete the contents.
 
 if [[ ! -d logs/valgrind ]]; then
-	#echo "logs/valgrind directory does not exists yet. Creating one..."
 	mkdir logs/valgrind
 else
-	#echo "logs/valgrind directory exists. Deleting contents..."
 	rm -f logs/valgrind/*
 fi
 
 #Create the tmp directory inside the logs directory if it does not exists yet. If it does exists, delete the contents.
 
 if [[ ! -d tmp ]]; then
-	#echo "tmp directory does not exists yet. Creating one..."
 	mkdir tmp
 else
-	#echo "tmp directory exists. Deleting contents..."
 	rm -f tmp/*
+fi
+
+#Create the wrong_test_cases directory inside the logs directory if it does not exists yet. If it does exists, delete the contents.
+
+if [[ -f logs/wrong_test_cases ]]; then
+	rm -f logs/wrong_test_cases
 fi
 
 #Run "make" and check whether the libftprintf.a file is created
 make re -C source_files > /dev/null
 if [[ ! -f source_files/libftprintf.a ]]; then
-	echo "The library libftprintf.a is not created after running \"make\"."
-	echo "Make sure your Makefile creates the library first."
+	echo -e "${RED}The library libftprintf.a is not created after running \"make\".${RESET}"
+	echo -e "${RED}Make sure your Makefile creates the library first.${RESET}"
 	exit 1
 fi
 
@@ -66,9 +72,17 @@ print_test_cases()
 {
 	cat -n logs/results/${c_prefix}_printed > tmp/c_printed
 	cat -n logs/results/${ft_prefix}_printed > tmp/ft_printed
-	diff tmp/c_printed tmp/ft_printed | grep "<" | tr -s " " | cut -d " " -f 2 | cut -f 1 > tmp/${spec_prefix}_line_numbers
+	diff -a tmp/c_printed tmp/ft_printed | grep -a "<" | tr -s " " | cut -d " " -f 2 | cut -f 1 > tmp/${spec_prefix}_line_numbers
+	echo "Wrong test cases with ${spec_prefix} test:" >> logs/wrong_test_cases
+	echo "----- KEEP IN MIND THAT THE RETURN VALUES ARE +1 BECAUSE A \\n WAS ALSO PRINTED -----" >> logs/wrong_test_cases
+	echo "" >> logs/wrong_test_cases
 	while read line_nb; do
-		grep "//${line_nb}" mains/${FT_MAIN_FILES[$i]}
+		grep "//${line_nb}" mains/${FT_MAIN_FILES[$i]} >> logs/wrong_test_cases
+		echo "		Your output: |$(cat -n logs/results/${ft_prefix}_printed | grep "${line_nb}" | cut -f 2)|" >> logs/wrong_test_cases
+		echo "		C    output: |$(cat -n logs/results/${c_prefix}_printed | grep "${line_nb}" | cut -f 2)|" >> logs/wrong_test_cases
+		echo "		Your return: $(cat -n logs/results/${ft_prefix}_return_val | grep "${line_nb}" | cut -f 2)" >> logs/wrong_test_cases
+		echo "		C    return: $(cat -n logs/results/${c_prefix}_return_val | grep "${line_nb}" | cut -f 2)" >> logs/wrong_test_cases
+		echo "" >> logs/wrong_test_cases
 	done < tmp/${spec_prefix}_line_numbers
 	return
 }
@@ -81,12 +95,12 @@ for i in ${!C_MAIN_FILES[@]}; do
 	ft_prefix=$(echo ${FT_MAIN_FILES[$i]} | cut -d '_' -f -2)
 	spec_prefix=$(echo ${FT_MAIN_FILES[$i]} | cut -d '_' -f 1)
 
-	echo "Running $spec_prefix test..."
+	echo -e "${CYAN_B}Running $spec_prefix test...${RESET}"
 	
 	#Run the program with the C function and redirect the output to the 'logs/results' directory
 	$CC $FLAGS mains/${C_MAIN_FILES[$i]} -o $OUTPUT && ./$OUTPUT > logs/results/${c_prefix}_printed
 	if [[ "$?" != 0 ]]; then
-		echo "Error on compilation. Fix these errors before continuing."
+		echo -e "${RED}Compilation error. Fix these errors before continuing.${RESET}"
 		exit 1
 	fi
 
@@ -94,8 +108,8 @@ for i in ${!C_MAIN_FILES[@]}; do
 	$CC $FLAGS -fsanitize=address -g mains/${FT_MAIN_FILES[$i]} source_files/libftprintf.a -o $OUTPUT
 	./$OUTPUT > logs/results/${ft_prefix}_printed
 	if [[ "$?" != 0 ]]; then
-		echo "Error on compilation. Fix these errors before continuing."
-		echo "The error happens with the following test:"
+		echo -e "	${RED}Compilation error. Fix these errors before continuing.${RESET}"
+		echo -e "	${RED}The error happens with the following test:${RESET}"
 		line_error=$((1 + $(cat logs/results/${ft_prefix}_printed | wc -l)))
 		echo "$(grep "//$line_error" mains/${FT_MAIN_FILES[$i]})"
 		#exit 1
@@ -104,19 +118,20 @@ for i in ${!C_MAIN_FILES[@]}; do
 	#Check differences in printed text
 	diff -a logs/results/${c_prefix}_printed logs/results/${ft_prefix}_printed >> logs/diff/${spec_prefix}_printed_diff
 	if [[ "$?" != 0 ]]; then
-		echo "There are differences between your output and the C output. Check logs/diff/$spec_prefix."
+		echo -e "	${RED}Did not pass $spec_prefix printed test. Check logs/diff/${spec_prefix}_printed_diff.${RESET}"
 		print_test_cases
 	else
-		echo "Passed $spec_prefix printed test."
+		echo -e "	${GREEN}Passed $spec_prefix printed test.${RESET}"
 	fi
 
 	#Check differences in return values
 	diff logs/results/${c_prefix}_return_val logs/results/${ft_prefix}_return_val >> logs/diff/${spec_prefix}_return_val_diff
 	if [[ "$?" != 0 ]]; then
-		echo "There are differences between your return values  and the C return values. Check logs/diff/."
+		echo -e "	${RED}Did not pass $spec_prefix return-value test. Check logs/diff/${spec_prefix}_return_val_diff.${RESET}"
 	else
-		echo "Passed $spec_prefix return-values test."
+		echo -e "	${GREEN}Passed $spec_prefix return-values test.${RESET}"
 	fi
+	echo ""
 done
 
 
@@ -124,8 +139,8 @@ done
 echo "Running p test..."
 $CC $FLAGS -fsanitize=address -g mains/p_ft_C_main.c source_files/libftprintf.a -o $OUTPUT
 ./$OUTPUT
-echo "Check the output of the %p specifier."
-echo "The first address is the output of printf, the second is from ft_printf. Same for the return values"
+echo -e "${BLUE}Check the output of the %p specifier.${RESET}"
+echo -e "${BLUE}The first address is the output of printf, the second is from ft_printf. Same for the return values.${RESET}"
 while [[ "$REPLY" != "y" ]]; do
 	echo "Please type y to continue."
 	read -s -n 1
