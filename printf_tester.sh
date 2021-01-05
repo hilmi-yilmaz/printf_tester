@@ -70,18 +70,23 @@ fi
 #Function which prints the testcases for which ft_printf didn't work
 print_test_cases()
 {
-	cat -n logs/results/${c_prefix}_printed > tmp/c_printed
-	cat -n logs/results/${ft_prefix}_printed > tmp/ft_printed
+	#Redirect the printed data of the C and ft-test to tmp directory with the line numbers (-n option)
+	cat -ne logs/results/${c_prefix}_printed > tmp/c_printed
+	cat -ne logs/results/${ft_prefix}_printed > tmp/ft_printed
+
+	#Obtain the line numbers that are different. Redirect this data to tmp/${spec_prefix}_line_numbers
 	diff -a tmp/c_printed tmp/ft_printed | grep -a "<" | tr -s " " | cut -d " " -f 2 | cut -f 1 > tmp/${spec_prefix}_line_numbers
 	echo "Wrong test cases with ${spec_prefix} test:" >> logs/wrong_test_cases
 	echo "----- KEEP IN MIND THAT THE RETURN VALUES ARE +1 BECAUSE A \\n WAS ALSO PRINTED -----" >> logs/wrong_test_cases
 	echo "" >> logs/wrong_test_cases
+
+	#Loop through the file, which contains the line numbers that are different.
 	while read line_nb; do
-		grep "//${line_nb}" mains/${FT_MAIN_FILES[$i]} >> logs/wrong_test_cases
-		echo "		Your output: |$(cat -n logs/results/${ft_prefix}_printed | grep "${line_nb}" | cut -f 2)|" >> logs/wrong_test_cases
-		echo "		C    output: |$(cat -n logs/results/${c_prefix}_printed | grep "${line_nb}" | cut -f 2)|" >> logs/wrong_test_cases
-		echo "		Your return: $(cat -n logs/results/${ft_prefix}_return_val | grep "${line_nb}" | cut -f 2)" >> logs/wrong_test_cases
-		echo "		C    return: $(cat -n logs/results/${c_prefix}_return_val | grep "${line_nb}" | cut -f 2)" >> logs/wrong_test_cases
+		grep -F -w "//${line_nb}" mains/${FT_MAIN_FILES[$i]} >> logs/wrong_test_cases
+		echo "		Your output: |$(cat -v logs/results/${ft_prefix}_printed | sed -n "${line_nb}p")|" >> logs/wrong_test_cases
+		echo "		C    output: |$(cat -v logs/results/${c_prefix}_printed | sed -n "${line_nb}p")|" >> logs/wrong_test_cases
+		echo "		Your return: $(cat -v logs/results/${ft_prefix}_return_val | sed -n "${line_nb}p")" >> logs/wrong_test_cases
+		echo "		C    return: $(cat -v logs/results/${c_prefix}_return_val | sed -n "${line_nb}p")" >> logs/wrong_test_cases
 		echo "" >> logs/wrong_test_cases
 	done < tmp/${spec_prefix}_line_numbers
 	return

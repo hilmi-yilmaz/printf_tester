@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/01 16:02:18 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2021/01/03 20:41:15 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/05 14:17:01 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,66 @@ int		main(void)
 	** Testing with basic characters
 	*/
 	
+	res = ft_printf("%c\n", 0);//1
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%3c\n", 0);//2
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%-3c\n", 0);//3
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%5c\n", 0);//4
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%-5c\n", 0);//5
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%*c\n", 4, 0);//6
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%-*c\n", 4, 0);//7
+	fprintf(fd, "%d\n", res);
+
+	res = ft_printf("%c\n", 10);//8
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%3c\n", 10);//9
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%-3c\n", 10);//10
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%5c\n", 10);//11
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%-5c\n", 10);//12
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%*c\n", 4, 10);//13
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%-*c\n", 4, 10);//14
+	fprintf(fd, "%d\n", res);
+
+	res = ft_printf("%c\n", 20);//15
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%3c\n", 20);//16
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%-3c\n", 20);//17
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%5c\n", 20);//18
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%-5c\n", 20);//19
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%*c\n", 4, 20);//20
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%-*c\n", 4, 20);//21
+	fprintf(fd, "%d\n", res);
+
+	res = ft_printf("%c\n", 30);//22
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%3c\n", 30);//23
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%-3c\n", 30);//24
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%5c\n", 30);//25
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%-5c\n", 30);//26
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%*c\n", 4, 30);//27
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%-*c\n", 4, 30);//28
+	fprintf(fd, "%d\n", res);
+
 	res = ft_printf("%c\n", 40);//29
 	fprintf(fd, "%d\n", res);
 	res = ft_printf("%3c\n", 40);//30
@@ -62,19 +122,19 @@ int		main(void)
 	res = ft_printf("%-*c\n", 4, 50);//42
 	fprintf(fd, "%d\n", res);
 	
-	res = ft_printf("%c\n", 60);//43
+	res = ft_printf("%c\n", 69);//43
 	fprintf(fd, "%d\n", res);
-	res = ft_printf("%3c\n", 60);//44
+	res = ft_printf("%3c\n", 69);//44
 	fprintf(fd, "%d\n", res);
-	res = ft_printf("%-3c\n", 60);//45
+	res = ft_printf("%-3c\n", 69);//45
 	fprintf(fd, "%d\n", res);
-	res = ft_printf("%5c\n", 60);//46
+	res = ft_printf("%5c\n", 69);//46
 	fprintf(fd, "%d\n", res);
-	res = ft_printf("%-5c\n", 60);//47
+	res = ft_printf("%-5c\n", 69);//47
 	fprintf(fd, "%d\n", res);
-	res = ft_printf("%*c\n", 4, 60);//48
+	res = ft_printf("%*c\n", 4, 69);//48
 	fprintf(fd, "%d\n", res);
-	res = ft_printf("%-*c\n", 4, 60);//49
+	res = ft_printf("%-*c\n", 4, 69);//49
 	fprintf(fd, "%d\n", res);
 	
 	res = ft_printf("%c\n", 70);//50
