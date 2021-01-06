@@ -49,6 +49,8 @@ void	x_convert(va_list ap, t_info *info)
 	info->return_val = ft_strlen(str_result);
 	fill_zeros(str_result, info, nb, 16);
 	fill_nb(str_result, str_nb, info, nb);
+	if (nb == 0 && info->prec == 0)
+		ft_memset(str_result, ' ', ft_strlen(str_result));
 	if (info->spec == 'X')
 		ft_toupper_str(str_result);
 	ft_putstr_fd(str_result, 1);
