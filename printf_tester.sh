@@ -12,8 +12,8 @@ RESET="\e[0m"
 CC=clang
 FLAGS="-Wall -Wextra -Werror"
 OUTPUT=output
-C_MAIN_FILES=("d_C_main.c" "i_C_main.c" "c_C_main.c" "s_C_main.c" "x_C_main.c")
-FT_MAIN_FILES=("d_ft_main.c" "i_ft_main.c" "c_ft_main.c" "s_ft_main.c" "x_ft_main.c")
+C_MAIN_FILES=("d_C_main.c" "i_C_main.c" "c_C_main.c" "s_C_main.c" "x_C_main.c" "X_C_main.c")
+FT_MAIN_FILES=("d_ft_main.c" "i_ft_main.c" "c_ft_main.c" "s_ft_main.c" "x_ft_main.c" "X_ft_main.c")
 
 #Create the logs directory if it does not exist yet.
 
@@ -62,6 +62,7 @@ fi
 #Run "make" and check whether the libftprintf.a file is created
 make re -C source_files > /dev/null
 if [[ ! -f source_files/libftprintf.a ]]; then
+	echo -e "${RED}An error occured. Fix it.${RESET}"
 	echo -e "${RED}The library libftprintf.a is not created after running \"make\".${RESET}"
 	echo -e "${RED}Make sure your Makefile creates the library first.${RESET}"
 	exit 1
@@ -116,7 +117,7 @@ for i in ${!C_MAIN_FILES[@]}; do
 		echo -e "	${RED}Compilation error. Fix these errors before continuing.${RESET}"
 		echo -e "	${RED}The error happens with the following test:${RESET}"
 		line_error=$((1 + $(cat logs/results/${ft_prefix}_printed | wc -l)))
-		echo "$(grep "//$line_error" mains/${FT_MAIN_FILES[$i]})"
+		echo "$(grep -w "//$line_error" mains/${FT_MAIN_FILES[$i]})"
 		#exit 1
 	fi
 	

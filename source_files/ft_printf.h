@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/18 14:14:29 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2020/12/27 13:26:30 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/06 14:47:40 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,13 @@ void				exceptions(t_info *info);
 */
 
 void				conversion(va_list ap, t_info *info);
-void				u_convert(va_list ap, t_info *info);
-void				s_convert(va_list ap, t_info *info);
 
 /*
-** These functions handle the d-conversion.
+** These functions handle the {d, u}-conversion.
 */
 
 void				d_convert(va_list ap, t_info *info);
+void				u_convert(va_list ap, t_info *info);
 char				*create_array(int nb, t_info *info, int len_nb);
 void				fill_zeros(char *str, t_info *info, int nb, int base);
 void				fill_nb(char *str, char *str_nb, t_info *info, int nb);
@@ -77,13 +76,16 @@ void				fill_zeros_x(char *str, t_info *info);
 
 void				c_convert(va_list ap, t_info *info);
 char				*create_array_c(t_info *info);
+void				exception_zero(unsigned char c, t_info *info);
+
 
 /*
 ** These functions handle the s-conversion
 */
 
-char				*create_array_s(const char *str, t_info *info);
-void				fill_str(char *str_malloc, const char *str, t_info *info);
+void				s_convert(va_list ap, t_info *info);
+char				*create_array_s(const char *str, t_info *info, int is_null);
+void				fill_str(char *str_malloc, const char *str, t_info *info, int is_null);
 
 /*
 ** These functions handle the p-conversion.

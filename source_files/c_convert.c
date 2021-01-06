@@ -6,12 +6,13 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/24 18:36:16 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2020/12/27 13:56:41 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/05 18:48:51 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /*
 ** The c_convert function prints the c-conversion.
@@ -31,23 +32,22 @@ void	c_convert(va_list ap, t_info *info)
 {
 	unsigned char	c;
 	char			*str;
-	int				i;
 	int				len_str;
 
-	i = 0;
 	c = va_arg(ap, int);
+	if (c == 0)
+	{
+		exception_zero(c, info);
+		return ;
+	}
 	str = create_array_c(info);
-	len_str = (int)ft_strlen(str);
 	if (str == NULL)
 	{
 		info->err = 1;
 		return ;
 	}
-	while (*(str + i) != '\0')
-	{
-		*(str + i) = ' ';
-		i++;
-	}
+	len_str = (int)ft_strlen(str);
+	ft_memset(str, ' ', (size_t)len_str);
 	if (info->dash == 0)
 		*(str + len_str - 1) = c;
 	else
@@ -78,11 +78,42 @@ char	*create_array_c(t_info *info)
 		len_str = info->width;
 	str = (char *)malloc(sizeof(char) * len_str + 1);
 	if (str == NULL)
-	{
-		info->err = 1;
 		return (NULL);
-	}
 	*(str + len_str) = '\0';
 	info->return_val = ft_strlen(str);
 	return (str);
+}
+
+/*
+** The exception_zero function handles the case if c = 0.
+**
+** Arguments:
+**		(unsigned char)	c: the character to print (in this case 0).
+**		(t_info *)		info: pointer to struct which contains the conversion
+**						information.
+**
+** Returns:
+**		(void) None.
+*/
+
+void	exception_zero(unsigned char c, t_info *info)
+{
+	int		i;
+	int		spaces;
+
+	i = 0;
+	if (info->width == 0 || info->width == 1)
+		spaces = 0;
+	else
+		spaces = info->width - 1;
+	if (info->dash == 1)
+		ft_putchar_fd(c, 1);
+	while (i < spaces)
+	{
+		ft_putchar_fd(' ', 1);
+		i++;
+	}
+	if (info->dash == 0)
+		ft_putchar_fd(c, 1);
+	info->return_val = spaces + 1;
 }

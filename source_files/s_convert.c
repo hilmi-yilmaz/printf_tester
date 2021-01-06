@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/24 21:27:22 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2020/12/27 17:38:17 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/06 14:47:38 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,25 @@
 
 void	s_convert(va_list ap, t_info *info)
 {
+	int			is_null;
 	const char	*str;
 	char		*str_malloc;
 
+	is_null = 0;
 	str = va_arg(ap, const char *);
-	str_malloc = create_array_s(str, info);
+	if (str == NULL)
+	{
+		str = "(null)";
+		is_null = 1;
+	}
+	str_malloc = create_array_s(str, info, is_null);
 	info->return_val = ft_strlen(str_malloc);
 	if (str_malloc == NULL)
 	{
 		info->err = 1;
 		return ;
 	}
-	fill_str(str_malloc, str, info);
+	fill_str(str_malloc, str, info, is_null);
 	ft_putstr_fd((char *)str_malloc, 1);
 	free(str_malloc);
 }
@@ -58,7 +65,7 @@ void	s_convert(va_list ap, t_info *info)
 **		(char *) 		str_malloc: string which is filled with spaces.
 */
 
-char	*create_array_s(const char *str, t_info *info)
+char	*create_array_s(const char *str, t_info *info, int is_null)
 {
 	int		len_str;
 	int		len_malloc;
@@ -72,6 +79,8 @@ char	*create_array_s(const char *str, t_info *info)
 	else
 		len_malloc = len_str;
 	if (len_malloc < info->width)
+		len_malloc = info->width;
+	if (is_null == 1 && info->prec < 6 && info->prec != -1)
 		len_malloc = info->width;
 	str_malloc = (char *)malloc(sizeof(char) * len_malloc + 1);
 	if (str_malloc == NULL)
@@ -95,14 +104,13 @@ char	*create_array_s(const char *str, t_info *info)
 **		(void) 			None.
 */
 
-void	fill_str(char *str_malloc, const char *str, t_info *info)
+void	fill_str(char *str_malloc, const char *str, t_info *info, int is_null)
 {
 	int i;
-	int j;
 	int	len_str;
+	int	to_fill;
 
 	i = 0;
-	j = 0;
 	len_str = (int)ft_strlen(str);
 	if (info->prec < len_str && info->prec != -1)
 		len_str = info->prec;
@@ -110,16 +118,13 @@ void	fill_str(char *str_malloc, const char *str, t_info *info)
 		i = info->width - len_str;
 	if (i < 0)
 		i = 0;
-	while (*(str + j) != '\0' && info->prec == -1)
-	{
-		*(str_malloc + i) = *(str + j);
-		i++;
-		j++;
-	}
-	while (*(str + j) != '\0' && j < info->prec && info->prec != -1)
-	{
-		*(str_malloc + i) = *(str + j);
-		i++;
-		j++;
-	}
+	to_fill = ft_strlen(str);
+	if (is_null == 0 && to_fill > info->prec)
+		to_fill = info->prec;
+	else if (is_null == 1 && to_fill > info->prec)
+		to_fill = 0;
+	if (info->prec == -1)
+		ft_memmove(str_malloc + i, str, ft_strlen(str));
+	else
+		ft_memmove(str_malloc + i, str, to_fill);
 }

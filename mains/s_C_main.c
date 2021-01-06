@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/01 17:11:33 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2021/01/03 11:08:38 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/06 14:42:42 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,51 +194,82 @@ int		main(void)
 	fprintf(fd, "%d\n", res);
 	res = printf("%.2s\n", NULL);//66
 	fprintf(fd, "%d\n", res);
-	res = printf("%-10.3s\n", NULL);//67
+	res = printf("%.6s\n", NULL);//67
 	fprintf(fd, "%d\n", res);
-	res = printf("%-2.10s\n", NULL);//68
+	res = printf("%.7s\n", NULL);//68
 	fprintf(fd, "%d\n", res);
-	res = printf("%.s\n", NULL);//69
+	res = printf("%-10.3s\n", NULL);//69
 	fprintf(fd, "%d\n", res);
-	res = printf("%.0s\n", NULL);//70
+	res = printf("%-2.10s\n", NULL);//70
+	fprintf(fd, "%d\n", res);
+	res = printf("%.s\n", NULL);//71
+	fprintf(fd, "%d\n", res);
+	res = printf("%.0s\n", NULL);//72
 	fprintf(fd, "%d\n", res);
 
 	/*
 	** Testing with *
 	*/
 
-	res = printf("%*s\n", 10, "codam");//71
+	res = printf("%*s\n", 10, "codam");//73
 	fprintf(fd, "%d\n", res);	
-	res = printf("%*s\n", -10, "codam");//72
+	res = printf("%*s\n", -10, "codam");//74
 	fprintf(fd, "%d\n", res);	
-	res = printf("%*s\n", 0, "codam");//73
+	res = printf("%*s\n", 0, "codam");//75
 	fprintf(fd, "%d\n", res);	
-	res = printf("%.*s\n", 3, "codam");//74
+	res = printf("%.*s\n", 3, "codam");//76
 	fprintf(fd, "%d\n", res);	
-	res = printf("%*.*s\n", 2, 4, "codam");//75
+	res = printf("%*.*s\n", 2, 4, "codam");//77
 	fprintf(fd, "%d\n", res);	
-	res = printf("%-*.*s\n", -2, 4, "codam");//76
+	res = printf("%-*.*s\n", -2, 4, "codam");//78
 	fprintf(fd, "%d\n", res);
-	res = printf("%*.2s\n", 4, "codam");//77
+	res = printf("%*.2s\n", 4, "codam");//79
 	fprintf(fd, "%d\n", res);
-	res = printf("%-4.*s\n", 2, "codam");//78
+	res = printf("%-4.*s\n", 2, "codam");//80
 	fprintf(fd, "%d\n", res);
 
 	/*
 	** Testing with text
 	*/
 
-	res = printf("We are %s students\n", "codam");//79
+	res = printf("We are %s students\n", "codam");//81
 	fprintf(fd, "%d\n", res);	
-	res = printf("We are %s students and we love %s\n", "codam", "coding together");//80
+	res = printf("We are %s students and we love %s\n", "codam", "coding together");//82
 	fprintf(fd, "%d\n", res);		
-	res = printf("We are %10s students\n", "codam");//81
+	res = printf("We are %10s students\n", "codam");//83
 	fprintf(fd, "%d\n", res);	
-	res = printf("We are %-10s students and we love %.4s\n", "codam", "coding together");//82
+	res = printf("We are %-10s students and we love %.4s\n", "codam", "coding together");//84
 	fprintf(fd, "%d\n", res);	
-	res = printf("We are %*.*s students\n", 10, 3, "codam");//83
+	res = printf("We are %*.*s students\n", 10, 3, "codam");//85
 	fprintf(fd, "%d\n", res);	
-	res = printf("We are %*s students and we love %.*s\n", -10, "codam", 1, "coding together");//84
+	res = printf("We are %*s students and we love %.*s\n", -10, "codam", 1, "coding together");//86
+	fprintf(fd, "%d\n", res);
+
+	/*
+	** Extra tests
+	*/
+
+	res = printf("%s\n", "(null)");//87
+	fprintf(fd, "%d\n", res);
+	res = printf("%10s\n", "(null)");//88
+	fprintf(fd, "%d\n", res);
+	res = printf("%-10s\n", "(null)");//89
+	fprintf(fd, "%d\n", res);
+	res = printf("%.5s\n", "(null)");//90
+	fprintf(fd, "%d\n", res);
+	res = printf("%.2s\n", "(null)");//91
+	fprintf(fd, "%d\n", res);
+	res = printf("%.6s\n", "(null)");//92
+	fprintf(fd, "%d\n", res);
+	res = printf("%.7s\n", "(null)");//93
+	fprintf(fd, "%d\n", res);
+	res = printf("%-10.3s\n", "(null)");//94
+	fprintf(fd, "%d\n", res);
+	res = printf("%-2.10s\n", "(null)");//95
+	fprintf(fd, "%d\n", res);
+	res = printf("%.s\n", "(null)");//96
+	fprintf(fd, "%d\n", res);
+	res = printf("%.0s\n", "(null)");//72
 	fprintf(fd, "%d\n", res);
 
 	return (0);
