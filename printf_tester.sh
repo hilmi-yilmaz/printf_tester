@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Colors
-GREEN="\e[1;32m"
-RED="\e[1;31m"
-BLUE="\e[1;34m"
-CYAN_B="\e[1;46m"
-BLUE_B="\e[1;44m"
-RESET="\e[0m"
+GREEN="\033[1;32m"
+RED="\033[1;31m"
+BLUE="\033[1;34m"
+CYAN_B="\033[1;46m"
+BLUE_B="\033[1;44m"
+RESET="\033[0m"
 
 #Define variables
 CC=clang
