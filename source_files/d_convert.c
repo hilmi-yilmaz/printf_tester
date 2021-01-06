@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/22 20:20:31 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2020/12/30 20:55:14 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/06 19:26:00 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ void	fill_zeros(char *str, t_info *info, int nb, int base)
 	int	prec;
 
 	prec = info->prec;
+	if (base == 11)
+		prec = prec;
 	if (info->prec == -1)
 		prec = 0;
 	if (info->dash == 0)
@@ -136,7 +138,7 @@ void	fill_zeros(char *str, t_info *info, int nb, int base)
 			i = 0;
 	}
 	j = 0;
-	while (*(str + i) != '\0' && (j < prec || j < ft_nblen(nb, base)))
+	while (*(str + i) != '\0' && j < prec) //|| j < ft_nblen(nb, base)))
 	{
 		*(str + i) = '0';
 		i++;
