@@ -105,10 +105,6 @@ for i in ${!C_MAIN_FILES[@]}; do
 	
 	#Run the program with the C function and redirect the output to the 'logs/results' directory
 	$CC $FLAGS mains/${C_MAIN_FILES[$i]} -o $OUTPUT && ./$OUTPUT > logs/results/${c_prefix}_printed
-	if [[ "$?" != 0 ]]; then
-		echo -e "${RED}Compilation error. Fix these errors before continuing.${RESET}"
-		exit 1
-	fi
 
 	#Run the program with own function and redirect the output to the 'logs/results' directory
 	$CC $FLAGS -fsanitize=address -g mains/${FT_MAIN_FILES[$i]} source_files/libftprintf.a -o $OUTPUT
