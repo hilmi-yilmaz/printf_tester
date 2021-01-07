@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/01 17:17:00 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2021/01/06 14:42:43 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/07 16:24:05 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,6 +271,9 @@ int		main(void)
 	res = ft_printf("%.s\n", "(null)");//96
 	fprintf(fd, "%d\n", res);
 	res = ft_printf("%.0s\n", "(null)");//72
+	fprintf(fd, "%d\n", res);
+
+	res = ft_printf("%*.*s is the best %*.*s\n", -15, -20, "utrecht", -1, -4, "yoooo");//73
 	fprintf(fd, "%d\n", res);
 
 	return (0);
