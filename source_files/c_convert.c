@@ -32,9 +32,10 @@ void	c_convert(va_list ap, t_info *info)
 {
 	unsigned char	c;
 	char			*str;
-	int				len_str;
 
-	c = va_arg(ap, int);
+	c = '%';
+	if (info->spec != '%')
+		c = va_arg(ap, int);
 	if (c == 0)
 	{
 		exception_zero(c, info);
@@ -46,10 +47,8 @@ void	c_convert(va_list ap, t_info *info)
 		info->err = 1;
 		return ;
 	}
-	len_str = (int)ft_strlen(str);
-	ft_memset(str, ' ', (size_t)len_str);
 	if (info->dash == 0)
-		*(str + len_str - 1) = c;
+		*(str + ft_strlen(str) - 1) = c;
 	else
 		*(str + 0) = c;
 	ft_putstr_fd(str, 1);
@@ -58,6 +57,7 @@ void	c_convert(va_list ap, t_info *info)
 
 /*
 ** The create_array_c function allocates exactly enough memory for the string.
+** It also fills the array with spaces or zeros depending on the given flags.
 **
 ** Arguments:
 **		(t_info *)	info: pointer to struct which contains the conversion
@@ -80,7 +80,10 @@ char	*create_array_c(t_info *info)
 	if (str == NULL)
 		return (NULL);
 	*(str + len_str) = '\0';
-	info->return_val = ft_strlen(str);
+	info->return_val = len_str;
+	ft_memset(str, ' ', (size_t)len_str);
+	if (info->zero == 1)
+		ft_memset(str, '0', (size_t)len_str);
 	return (str);
 }
 
