@@ -38,7 +38,7 @@ void	x_convert(va_list ap, t_info *info)
 	char			*str_result;
 
 	nb = va_arg(ap, unsigned int);
-	str_nb = ft_itoa_hex(nb);
+	str_nb = ft_ultoa_hex(nb);
 	len_nb = (int)ft_strlen(str_nb);
 	if (str_nb == NULL)
 	{

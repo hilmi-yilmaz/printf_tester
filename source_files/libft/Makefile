@@ -6,7 +6,7 @@
 #    By: hyilmaz <marvin@codam.nl>                    +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/11/17 12:51:19 by hyilmaz       #+#    #+#                  #
-#    Updated: 2020/12/26 20:08:51 by hyilmaz       ########   odam.nl          #
+#    Updated: 2021/01/07 13:27:04 by hyilmaz       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,9 +56,10 @@ BONUS_SOURCE = ft_lstnew.c \
 			   ft_lstclear.c \
 			   ft_lstiter.c \
 			   ft_lstmap.c \
-			   ft_itoa_hex_bonus.c \
 			   ft_toupper_str_bonus.c \
-			   ft_ultoa_hex_bonus.c
+			   ft_ultoa_hex_bonus.c \
+			   ft_itoa_hex_bonus.c \
+			   ft_ltoa_dec_bonus.c
 
 REG_OBJECT = $(SOURCE:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: hyilmaz <marvin@codam.nl>                    +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/01 17:07:34 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2020/12/26 20:09:59 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/07 13:27:25 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 char				*ft_itoa_hex(int n);
 void				ft_toupper_str(char *str);
 char				*ft_ultoa_hex(unsigned long n);
+char				*ft_ltoa_dec(long n);
 
 #endif

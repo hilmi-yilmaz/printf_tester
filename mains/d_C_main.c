@@ -6,10 +6,9 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/30 18:36:08 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2021/01/03 12:06:11 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/07 14:05:04 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -408,5 +407,16 @@ int		main(void)
 	res = printf("Hello i am %20.10d years old and my length is %10.20d cm\n", 22, 190);//158
 	fprintf(fd, "%d\n", res);
 
+	/*
+	** Extra tests
+	*/
+	
+	res = printf("%d\n", 0);//159
+	fprintf(fd, "%d\n", res);
+	res = printf("%3d\n", 0);//160
+	fprintf(fd, "%d\n", res);
+	res = printf("%-3d\n", 0);//161
+	fprintf(fd, "%d\n", res);
+	
 	return (0);
 }

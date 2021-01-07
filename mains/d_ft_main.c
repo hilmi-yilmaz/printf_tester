@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/30 18:36:16 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2021/01/01 15:57:19 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/06 22:27:39 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -406,6 +406,17 @@ int		main(void)
 	res = ft_printf("Hello i am %-20.10d years old and my length is %-10.20d cm\n", 22, 190);//157
 	fprintf(fd, "%d\n", res);
 	res = ft_printf("Hello i am %20.10d years old and my length is %10.20d cm\n", 22, 190);//158
+	fprintf(fd, "%d\n", res);
+	
+	/*
+	** Extra tests
+	*/
+	
+	res = ft_printf("%d\n", 0);//159
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%3d\n", 0);//160
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%-3d\n", 0);//161
 	fprintf(fd, "%d\n", res);
 	
 	return (0);

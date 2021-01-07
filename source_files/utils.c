@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_nblen(int nb, int base)
+int		ft_nblen(long nb, int base)
 {
 	int i;
 

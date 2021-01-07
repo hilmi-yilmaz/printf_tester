@@ -34,10 +34,7 @@ void	d_convert(va_list ap, t_info *info)
 	char	*str_nb;
 	char	*str;
 
-	if (info->spec == 'd' || info->spec == 'i')
-		nb = va_arg(ap, int);
-	if (info->spec == 'u')
-		nb = va_arg(ap, unsigned int);
+	nb = va_arg(ap, int);
 	str_nb = ft_itoa(nb);
 	if (str_nb == NULL)
 	{
@@ -70,7 +67,7 @@ void	d_convert(va_list ap, t_info *info)
 **		(char *) 	str: string which is filled with spaces.
 */
 
-char	*create_array(int nb, t_info *info, int len_nb)
+char	*create_array(long nb, t_info *info, int len_nb)
 {
 	int		len_str;
 	char	*str;
@@ -81,8 +78,6 @@ char	*create_array(int nb, t_info *info, int len_nb)
 		len_str = info->prec;
 	if (len_str < info->width)
 		len_str = info->width;
-	if (nb == 0 && info->prec == -1)
-		len_str = 1;
 	if (nb == 0 && info->prec == 0)
 		len_str = info->width;
 	if (nb < 0 && info->prec >= len_nb && info->prec >= info->width)
@@ -117,7 +112,7 @@ char	*create_array(int nb, t_info *info, int len_nb)
 **		(void) 		None.
 */
 
-void	fill_zeros(char *str, t_info *info, int nb, int base)
+void	fill_zeros(char *str, t_info *info, long nb, int base)
 {
 	int i;
 	int j;
@@ -158,7 +153,7 @@ void	fill_zeros(char *str, t_info *info, int nb, int base)
 **		(void) 		None.
 */
 
-void	fill_nb(char *str, char *str_nb, t_info *info, int nb)
+void	fill_nb(char *str, char *str_nb, t_info *info, long nb)
 {
 	int i;
 	int j;

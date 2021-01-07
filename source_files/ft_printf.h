@@ -53,14 +53,19 @@ void				exceptions(t_info *info);
 void				conversion(va_list ap, t_info *info);
 
 /*
-** These functions handle the {d, u}-conversion.
+** These functions handle the {d, i}-conversion.
 */
 
 void				d_convert(va_list ap, t_info *info);
+char				*create_array(long nb, t_info *info, int len_nb);
+void				fill_zeros(char *str, t_info *info, long nb, int base);
+void				fill_nb(char *str, char *str_nb, t_info *info, long nb);
+
+/*
+** These functions handle the u conversion.
+*/
+
 void				u_convert(va_list ap, t_info *info);
-char				*create_array(int nb, t_info *info, int len_nb);
-void				fill_zeros(char *str, t_info *info, int nb, int base);
-void				fill_nb(char *str, char *str_nb, t_info *info, int nb);
 
 /*
 ** These functions handle the x-conversion.
@@ -99,7 +104,7 @@ void				fill_addr(char *str, char *str_nb, t_info *info);
 ** Here are some utils functions.
 */
 
-int					ft_nblen(int nb, int base);
+int					ft_nblen(long nb, int base);
 int					max_number(int a, int b);
 int					ft_abs(int a);
 int					ft_strchr1(char *s, int c);

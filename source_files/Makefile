@@ -19,6 +19,7 @@ SRC =	ft_printf.c \
 		exceptions.c \
 		conversion.c \
 		d_convert.c \
+		u_convert.c \
 		x_convert.c \
 		c_convert.c \
 		s_convert.c \

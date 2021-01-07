@@ -25,8 +25,10 @@
 
 void	conversion(va_list ap, t_info *info)
 {
-	if (info->spec == 'd' || info->spec == 'i' || info->spec == 'u')
+	if (info->spec == 'd' || info->spec == 'i')
 		d_convert(ap, info);
+	else if (info->spec == 'u')
+		u_convert(ap, info);
 	else if (info->spec == 'x' || info->spec == 'X')
 		x_convert(ap, info);
 	else if (info->spec == 'c')
