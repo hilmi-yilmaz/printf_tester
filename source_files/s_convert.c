@@ -29,25 +29,20 @@
 
 void	s_convert(va_list ap, t_info *info)
 {
-	int			is_null;
 	const char	*str;
 	char		*str_malloc;
 
-	is_null = 0;
 	str = va_arg(ap, const char *);
 	if (str == NULL)
-	{
 		str = "(null)";
-		is_null = 1;
-	}
-	str_malloc = create_array_s(str, info, is_null);
+	str_malloc = create_array_s(str, info);
 	info->return_val = ft_strlen(str_malloc);
 	if (str_malloc == NULL)
 	{
 		info->err = 1;
 		return ;
 	}
-	fill_str(str_malloc, str, info, is_null);
+	fill_str(str_malloc, str, info);
 	ft_putstr_fd((char *)str_malloc, 1);
 	free(str_malloc);
 }
@@ -65,7 +60,7 @@ void	s_convert(va_list ap, t_info *info)
 **		(char *) 		str_malloc: string which is filled with spaces.
 */
 
-char	*create_array_s(const char *str, t_info *info, int is_null)
+char	*create_array_s(const char *str, t_info *info)
 {
 	int		len_str;
 	int		len_malloc;
@@ -79,8 +74,6 @@ char	*create_array_s(const char *str, t_info *info, int is_null)
 	else
 		len_malloc = len_str;
 	if (len_malloc < info->width)
-		len_malloc = info->width;
-	if (is_null == 1 && info->prec < 6 && info->prec != -1)
 		len_malloc = info->width;
 	str_malloc = (char *)malloc(sizeof(char) * len_malloc + 1);
 	if (str_malloc == NULL)
@@ -104,7 +97,7 @@ char	*create_array_s(const char *str, t_info *info, int is_null)
 **		(void) 			None.
 */
 
-void	fill_str(char *str_malloc, const char *str, t_info *info, int is_null)
+void	fill_str(char *str_malloc, const char *str, t_info *info)
 {
 	int i;
 	int	len_str;
@@ -119,9 +112,9 @@ void	fill_str(char *str_malloc, const char *str, t_info *info, int is_null)
 	if (i < 0)
 		i = 0;
 	to_fill = ft_strlen(str);
-	if (is_null == 0 && to_fill > info->prec)
+	if (to_fill > info->prec)
 		to_fill = info->prec;
-	else if (is_null == 1 && to_fill > info->prec)
+	else if (to_fill > info->prec)
 		to_fill = 0;
 	if (info->prec == -1)
 		ft_memmove(str_malloc + i, str, ft_strlen(str));

@@ -89,8 +89,8 @@ void				exception_zero(unsigned char c, t_info *info);
 */
 
 void				s_convert(va_list ap, t_info *info);
-char				*create_array_s(const char *str, t_info *info, int is_null);
-void				fill_str(char *str_malloc, const char *str, t_info *info, int is_null);
+char				*create_array_s(const char *str, t_info *info);
+void				fill_str(char *str_malloc, const char *str, t_info *info);
 
 /*
 ** These functions handle the p-conversion.
