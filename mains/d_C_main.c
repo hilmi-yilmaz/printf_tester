@@ -410,12 +410,74 @@ int		main(void)
 	/*
 	** Extra tests
 	*/
-	
-	res = printf("%d\n", 0);//159
+
+	res = printf("%0*d\n", -7, -54);//159
 	fprintf(fd, "%d\n", res);
-	res = printf("%3d\n", 0);//160
+	res = printf("%0*.*d\n", 2, -2, 0);//160
 	fprintf(fd, "%d\n", res);
-	res = printf("%-3d\n", 0);//161
+	res = printf("%0*.*d\n", 2, -2, 8);//161
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 2, -2, -8);//162
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 2, -2, 12);//163
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 2, -2, -12);//164
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 2, -2, 456);//165
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 2, -2, -456);//166
+	fprintf(fd, "%d\n", res);
+
+	res = printf("%0*.*d\n", 3, -2, 0);//167
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 3, -2, 8);//168
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 3, -2, -8);//169
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 3, -2, 12);//170
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 3, -2, -12);//171
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 3, -2, 456);//172
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 3, -2, -456);//173
+	fprintf(fd, "%d\n", res);
+
+	res = printf("%0*.*d\n", 4, -2, 0);//174
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 4, -2, 8);//175
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 4, -2, -8);//176
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 4, -2, 12);//177
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 4, -2, -12);//178
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 4, -2, 456);//179
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 4, -2, -456);//180
+	fprintf(fd, "%d\n", res);
+
+	res = printf("%0*.*d\n", 4, -6, 0);//181
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 4, -6, 8);//182
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 4, -6, -8);//183
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 4, -6, 12);//184
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 4, -6, -12);//185
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 4, -6, 456);//186
+	fprintf(fd, "%d\n", res);
+	res = printf("%0*.*d\n", 4, -6, -456);//187
+	fprintf(fd, "%d\n", res);
+
+	res = printf("%d\n", 0);//188
+	fprintf(fd, "%d\n", res);
+	res = printf("%3d\n", 0);//189
+	fprintf(fd, "%d\n", res);
+	res = printf("%-3d\n", 0);//189
 	fprintf(fd, "%d\n", res);
 	
 	return (0);

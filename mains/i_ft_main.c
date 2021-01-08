@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/30 18:36:08 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2021/01/01 15:57:53 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/07 21:36:33 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -406,6 +406,79 @@ int		main(void)
 	res = ft_printf("Hello i am %-20.10i years old and my length is %-10.20i cm\n", 22, 190);//157
 	fprintf(fd, "%d\n", res);
 	res = ft_printf("Hello i am %20.10i years old and my length is %10.20i cm\n", 22, 190);//158
+	fprintf(fd, "%d\n", res);
+
+	/*
+	** Extra tests
+	*/
+
+	res = ft_printf("%0*i\n", -7, -54);//159
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 2, -2, 0);//160
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 2, -2, 8);//161
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 2, -2, -8);//162
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 2, -2, 12);//163
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 2, -2, -12);//164
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 2, -2, 456);//165
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 2, -2, -456);//166
+	fprintf(fd, "%d\n", res);
+
+	res = ft_printf("%0*.*i\n", 3, -2, 0);//167
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 3, -2, 8);//168
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 3, -2, -8);//169
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 3, -2, 12);//170
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 3, -2, -12);//171
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 3, -2, 456);//172
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 3, -2, -456);//173
+	fprintf(fd, "%d\n", res);
+
+	res = ft_printf("%0*.*i\n", 4, -2, 0);//174
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 4, -2, 8);//175
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 4, -2, -8);//176
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 4, -2, 12);//177
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 4, -2, -12);//178
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 4, -2, 456);//179
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 4, -2, -456);//180
+	fprintf(fd, "%d\n", res);	
+
+	res = ft_printf("%0*.*i\n", 4, -6, 0);//181
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 4, -6, 8);//182
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 4, -6, -8);//183
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 4, -6, 12);//184
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 4, -6, -12);//185
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 4, -6, 456);//186
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%0*.*i\n", 4, -6, -456);//187
+	fprintf(fd, "%d\n", res);
+
+	res = ft_printf("%i\n", 0);//188
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%3i\n", 0);//189
+	fprintf(fd, "%d\n", res);
+	res = ft_printf("%-3i\n", 0);//189
 	fprintf(fd, "%d\n", res);
 
 	return (0);
