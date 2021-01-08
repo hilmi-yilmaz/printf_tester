@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/02 12:19:16 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2021/01/03 11:14:42 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/08 23:44:55 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		main(void)
 	char	d;
 	char	*e;
 	char	*f;
+	char	*g;
 
 	fd = fopen("logs/results/p_ft_C_return_val", "a+");
 	if (fd == NULL)
@@ -41,6 +42,7 @@ int		main(void)
 	d = ']';
 	e = "hilmi";
 	f = malloc(sizeof(char) * 10);
+	g = NULL;
 
 	res_c = printf("%p\n", &a);
 	res_ft = ft_printf("%p\n", &a);//1
@@ -62,16 +64,21 @@ int		main(void)
 	printf("%d\n", res_c);
 	printf("%d\n\n", res_ft);
 
-	res_c = printf("%p\n", &e);
-	res_ft = ft_printf("%p\n", &e);//5
+	res_c = printf("%p\n", e);
+	res_ft = ft_printf("%p\n", e);//5
 	printf("%d\n", res_c);
 	printf("%d\n\n", res_ft);
 
-	res_c = printf("%p\n", &f);
-	res_ft = ft_printf("%p\n", &f);//6
+	res_c = printf("%p\n", f);
+	res_ft = ft_printf("%p\n", f);//6
 	printf("%d\n", res_c);
 	printf("%d\n\n", res_ft);
 
+	res_c = printf("%p\n", g);
+	res_ft = ft_printf("%p\n", g);//6
+	printf("%d\n", res_c);
+	printf("%d\n\n", res_ft);
+	
 	free(f);
 	
 	return (0);
