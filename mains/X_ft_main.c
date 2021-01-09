@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../source_files/ft_printf.h"
+#include "ft_printf.h"
 
 int		main(void)
 {	
