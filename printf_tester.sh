@@ -140,7 +140,7 @@ done
 
 #Testing with %p specifier
 echo "Running p test..."
-$CC $FLAGS -fsanitize=address -g mains/p_ft_C_main.c source_files/libftprintf.a -o $OUTPUT
+$CC $FLAGS $HEADER_PATH -fsanitize=address -g mains/p_ft_C_main.c source_files/libftprintf.a -o $OUTPUT
 ./$OUTPUT > logs/p_test
 echo -e "${BLUE}Check the output of the %p specifier.${RESET}"
 echo -e "${BLUE}The first address is the output of printf, the second is from ft_printf. Same for the return values.${RESET}"

@@ -499,6 +499,14 @@ int		main(void)
 	fflush(stdout);
 	printf("%d\n\n", res_ft);
 	fflush(stdout);
+
+	res_c = printf("|%.p|\n", e);
+	fflush(stdout);
+	res_ft = ft_printf("|%.p|\n", e);//56
+	printf("%d\n", res_c);
+	fflush(stdout);
+	printf("%d\n\n", res_ft);
+	fflush(stdout);
 	
 	free(d);
 	
