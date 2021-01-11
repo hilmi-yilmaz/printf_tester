@@ -11,7 +11,7 @@ RESET="\033[0m"
 #Define variables
 CC=clang
 FLAGS="-Wall -Wextra -Werror"
-HEADER_PATH="-I/home/hilmi/Desktop/Codam/curriculum/printf_tester/source_files/src/"
+HEADER_PATH="-I/home/hilmi/Desktop/Codam/curriculum/printf_tester/src/src/"
 OUTPUT=output
 C_MAIN_FILES=("d_C_main.c" "i_C_main.c" "u_C_main.c" "c_C_main.c" "s_C_main.c" "x_C_main.c" "X_C_main.c")
 FT_MAIN_FILES=("d_ft_main.c" "i_ft_main.c" "u_ft_main.c" "c_ft_main.c" "s_ft_main.c" "x_ft_main.c" "X_ft_main.c")
@@ -61,8 +61,8 @@ if [[ -f logs/wrong_test_cases ]]; then
 fi
 
 #Run "make" and check whether the libftprintf.a file is created
-make re -C source_files > /dev/null
-if [[ ! -f source_files/libftprintf.a ]]; then
+make re -C src > /dev/null
+if [[ ! -f src/libftprintf.a ]]; then
 	echo -e "${RED}An error occured. Fix it.${RESET}"
 	echo -e "${RED}The library libftprintf.a is not created after running \"make\".${RESET}"
 	echo -e "${RED}Make sure your Makefile creates the library first.${RESET}"
@@ -108,7 +108,7 @@ for i in ${!C_MAIN_FILES[@]}; do
 	$CC $FLAGS mains/${C_MAIN_FILES[$i]} -o $OUTPUT && ./$OUTPUT > logs/results/${c_prefix}_printed
 
 	#Run the program with own function and redirect the output to the 'logs/results' directory
-	$CC $FLAGS $HEADER_PATH -fsanitize=address -g mains/${FT_MAIN_FILES[$i]} source_files/libftprintf.a -o $OUTPUT
+	$CC $FLAGS $HEADER_PATH -fsanitize=address -g mains/${FT_MAIN_FILES[$i]} src/libftprintf.a -o $OUTPUT
 	./$OUTPUT > logs/results/${ft_prefix}_printed
 	if [[ "$?" != 0 ]]; then
 		echo -e "	${RED}Compilation error. Fix these errors before continuing.${RESET}"
@@ -140,14 +140,14 @@ done
 
 #Testing with %p specifier
 echo "Running p test..."
-$CC $FLAGS $HEADER_PATH -fsanitize=address -g mains/p_ft_C_main.c source_files/libftprintf.a -o $OUTPUT
+$CC $FLAGS $HEADER_PATH -fsanitize=address -g mains/p_ft_C_main.c src/libftprintf.a -o $OUTPUT
 ./$OUTPUT > logs/p_test
 echo -e "${BLUE}Check the output of the %p specifier.${RESET}"
 echo -e "${BLUE}The first address is the output of printf, the second is from ft_printf. Same for the return values.${RESET}"
-while [[ "$REPLY" != "y" ]]; do
-	echo "Please type y to continue."
-	read -s -n 1
-done
+#while [[ "$REPLY" != "y" ]]; do
+#	echo "Please type y to continue."
+#	read -s -n 1
+#done
 
 
 #Run a test with specific main and valgrind to check for memory errors.
@@ -156,5 +156,4 @@ done
 rm -rdf $OUTPUT tmp
 
 #Delete al object files
-make fclean -C source_files/ > /dev/null
-make fclean -C source_files/libft/ > /dev/null
+make fclean -C src/ > /dev/null
