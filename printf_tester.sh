@@ -70,27 +70,33 @@ if [[ ! -f src/libftprintf.a ]]; then
 fi
 
 #Function which prints the testcases for which ft_printf didn't work
+#It takes 4 arguments:
+#	$1: c_prefix
+#	$2: ft_prefix
+#	$3: spec_prefix
+#	$4: name of the main
+
 print_test_cases()
 {
 	#Redirect the printed data of the C and ft-test to tmp directory with the line numbers (-n option)
-	cat -ne logs/results/${c_prefix}_printed > tmp/c_printed
-	cat -ne logs/results/${ft_prefix}_printed > tmp/ft_printed
+	cat -ne logs/results/$1_printed > tmp/c_printed
+	cat -ne logs/results/$2_printed > tmp/ft_printed
 
 	#Obtain the line numbers that are different. Redirect this data to tmp/${spec_prefix}_line_numbers
-	diff -a tmp/c_printed tmp/ft_printed | grep -a "<" | tr -s " " | cut -d " " -f 2 | cut -f 1 > tmp/${spec_prefix}_line_numbers
-	echo "Wrong test cases with ${spec_prefix} test:" >> logs/wrong_test_cases
+	diff -a tmp/c_printed tmp/ft_printed | grep -a "<" | tr -s " " | cut -d " " -f 2 | cut -f 1 > tmp/$3_line_numbers
+	echo "Wrong test cases with $3 test:" >> logs/wrong_test_cases
 	echo "----- KEEP IN MIND THAT THE RETURN VALUES ARE +1 BECAUSE A \\n WAS ALSO PRINTED -----" >> logs/wrong_test_cases
 	echo "" >> logs/wrong_test_cases
 
 	#Loop through the file, which contains the line numbers that are different.
 	while read line_nb; do
-		grep -F -w "//${line_nb}" mains/${FT_MAIN_FILES[$i]} >> logs/wrong_test_cases
-		echo "		Your output: |$(cat -v logs/results/${ft_prefix}_printed | sed -n "${line_nb}p")|" >> logs/wrong_test_cases
-		echo "		C    output: |$(cat -v logs/results/${c_prefix}_printed | sed -n "${line_nb}p")|" >> logs/wrong_test_cases
-		echo "		Your return: $(cat -v logs/results/${ft_prefix}_return_val | sed -n "${line_nb}p")" >> logs/wrong_test_cases
-		echo "		C    return: $(cat -v logs/results/${c_prefix}_return_val | sed -n "${line_nb}p")" >> logs/wrong_test_cases
+		grep -F -w "//${line_nb}" mains/$4 >> logs/wrong_test_cases
+		echo "		Your output: |$(cat -v logs/results/$2_printed | sed -n "${line_nb}p")|" >> logs/wrong_test_cases
+		echo "		C    output: |$(cat -v logs/results/$1_printed | sed -n "${line_nb}p")|" >> logs/wrong_test_cases
+		echo "		Your return: $(cat -v logs/results/$2_return_val | sed -n "${line_nb}p")" >> logs/wrong_test_cases
+		echo "		C    return: $(cat -v logs/results/$1_return_val | sed -n "${line_nb}p")" >> logs/wrong_test_cases
 		echo "" >> logs/wrong_test_cases
-	done < tmp/${spec_prefix}_line_numbers
+	done < tmp/$3_line_numbers
 	return
 }
 
@@ -122,7 +128,7 @@ for i in ${!C_MAIN_FILES[@]}; do
 	diff -a logs/results/${c_prefix}_printed logs/results/${ft_prefix}_printed >> logs/diff/${spec_prefix}_printed_diff
 	if [[ "$?" != 0 ]]; then
 		echo -e "	${RED}Did not pass $spec_prefix printed test. Check logs/diff/${spec_prefix}_printed_diff.${RESET}"
-		print_test_cases
+		print_test_cases $c_prefix $ft_prefix $spec_prefix ${FT_MAIN_FILES[$i]}
 	else
 		echo -e "	${GREEN}Passed $spec_prefix printed test.${RESET}"
 	fi
@@ -139,15 +145,27 @@ done
 
 
 #Testing with %p specifier
-echo "Running p test..."
-$CC $FLAGS $HEADER_PATH -fsanitize=address -g mains/p_ft_C_main.c src/libftprintf.a -o $OUTPUT
-./$OUTPUT > logs/p_test
-echo -e "${BLUE}Check the output of the %p specifier.${RESET}"
-echo -e "${BLUE}The first address is the output of printf, the second is from ft_printf. Same for the return values.${RESET}"
-#while [[ "$REPLY" != "y" ]]; do
-#	echo "Please type y to continue."
-#	read -s -n 1
-#done
+echo -e "${CYAN_B}Running p test...${RESET}"
+$CC $FLAGS $HEADER_PATH -fsanitize=address -g mains/p_main.c src/libftprintf.a -o $OUTPUT
+./$OUTPUT > logs/results/p_ft_printed
+	
+#Check differences in printed text for %p
+diff -a logs/results/p_C_printed logs/results/p_ft_printed >> logs/diff/p_printed_diff
+if [[ "$?" != 0 ]]; then
+	echo -e "	${RED}Did not pass p printed test. Check logs/diff/p_printed_diff.${RESET}"
+	print_test_cases "p_C" "p_ft" "p" "p_main.c"
+else
+	echo -e "	${GREEN}Passed p printed test.${RESET}"
+fi
+
+#Check differences in return values for %p
+diff logs/results/c_C_return_val logs/results/c_ft_return_val >> logs/diff/p_return_val_diff
+if [[ "$?" != 0 ]]; then
+	echo -e "	${RED}Did not pass p return-value test. Check logs/diff/p_return_val_diff.${RESET}"
+else
+	echo -e "	${GREEN}Passed p return-values test.${RESET}"
+fi
+echo ""
 
 
 #Run a test with specific main and valgrind to check for memory errors.
