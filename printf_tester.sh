@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#User defined variables
+HEADER_PATH="/home/hilmi/Desktop/Codam/curriculum/printf_tester/src/src/" #the path to your ft_printf.h file. Make sure your headerfile is called ft_printf.h.
+
 # Colors
 GREEN="\033[1;32m"
 RED="\033[1;31m"
@@ -11,7 +14,6 @@ RESET="\033[0m"
 #Define variables
 CC=clang
 FLAGS="-Wall -Wextra -Werror"
-HEADER_PATH="-I/home/hilmi/Desktop/Codam/curriculum/printf_tester/src/src/"
 OUTPUT=output
 C_MAIN_FILES=("d_C_main.c" "i_C_main.c" "u_C_main.c" "c_C_main.c" "s_C_main.c" "x_C_main.c" "X_C_main.c")
 FT_MAIN_FILES=("d_ft_main.c" "i_ft_main.c" "u_ft_main.c" "c_ft_main.c" "s_ft_main.c" "x_ft_main.c" "X_ft_main.c")
@@ -114,7 +116,7 @@ for i in ${!C_MAIN_FILES[@]}; do
 	$CC $FLAGS mains/${C_MAIN_FILES[$i]} -o $OUTPUT && ./$OUTPUT > logs/results/${c_prefix}_printed
 
 	#Run the program with own function and redirect the output to the 'logs/results' directory
-	$CC $FLAGS $HEADER_PATH -fsanitize=address -g mains/${FT_MAIN_FILES[$i]} src/libftprintf.a -o $OUTPUT
+	$CC $FLAGS -I$HEADER_PATH -fsanitize=address -g mains/${FT_MAIN_FILES[$i]} src/libftprintf.a -o $OUTPUT
 	./$OUTPUT > logs/results/${ft_prefix}_printed
 	if [[ "$?" != 0 ]]; then
 		echo -e "	${RED}Compilation error. Fix these errors before continuing.${RESET}"
@@ -146,7 +148,7 @@ done
 
 #Testing with %p specifier
 echo -e "${CYAN_B}Running p test...${RESET}"
-$CC $FLAGS $HEADER_PATH -fsanitize=address -g mains/p_main.c src/libftprintf.a -o $OUTPUT
+$CC $FLAGS -I$HEADER_PATH -fsanitize=address -g mains/p_main.c src/libftprintf.a -o $OUTPUT
 ./$OUTPUT > logs/results/p_ft_printed
 	
 #Check differences in printed text for %p
