@@ -18,7 +18,7 @@ int		main(void)
 	FILE *fd;
 	int res;
 
-	fd = fopen("logs/results/X_C_return_val", "a+");
+	fd = fopen("logs/results/bigX_C_return_val", "a+");
 	if (fd == NULL)
 	{
 		printf("Couldn't open file\n");

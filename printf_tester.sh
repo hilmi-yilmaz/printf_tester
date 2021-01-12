@@ -15,8 +15,8 @@ RESET="\033[0m"
 CC=clang
 FLAGS="-Wall -Wextra -Werror"
 OUTPUT=output
-C_MAIN_FILES=("d_C_main.c" "i_C_main.c" "u_C_main.c" "c_C_main.c" "s_C_main.c" "x_C_main.c" "X_C_main.c")
-FT_MAIN_FILES=("d_ft_main.c" "i_ft_main.c" "u_ft_main.c" "c_ft_main.c" "s_ft_main.c" "x_ft_main.c" "X_ft_main.c")
+C_MAIN_FILES=("d_C_main.c" "i_C_main.c" "u_C_main.c" "c_C_main.c" "s_C_main.c" "x_C_main.c" "bigX_C_main.c")
+FT_MAIN_FILES=("d_ft_main.c" "i_ft_main.c" "u_ft_main.c" "c_ft_main.c" "s_ft_main.c" "x_ft_main.c" "bigX_ft_main.c")
 
 #Create the logs directory if it does not exist yet.
 
@@ -170,7 +170,14 @@ fi
 echo ""
 
 
-#Run a test with specific main and valgrind to check for memory errors.
+#Amount of tests wrong
+count_failed=$(grep -w 'res\|res_ft' logs/wrong_test_cases | wc -l)
+total_tests=$(grep -r "//" ./mains/*C_main.c | wc -l)
+if [[ "$count_failed" == "0" ]]; then
+	echo -e "${GREEN}You passed all tests ($total_tests/$total_tests).${RESET}"
+else
+	echo -e "${RED}You failed $count_failed tests ($(($total_tests - $count_failed))/$total_tests). See logs/wrong_test_cases.${RESET}"
+fi
 
 #Delete unnecessary files
 rm -rdf $OUTPUT tmp
