@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #User defined variables
-HEADER_PATH="/home/hilmi/Desktop/Codam/curriculum/printf_tester/src/src/" #the path to your ft_printf.h file. Make sure your headerfile is called ft_printf.h.
+HEADER_PATH="/home/hilmi/Desktop/codam/curriculum/printf_tester/src/src" #the path to your ft_printf.h file. Make sure your headerfile is called ft_printf.h.
 
 # Colors
 GREEN="\033[1;32m"
@@ -15,8 +15,8 @@ RESET="\033[0m"
 CC=clang
 FLAGS="-Wall -Wextra -Werror"
 OUTPUT=output
-C_MAIN_FILES=("d_C_main.c" "i_C_main.c" "u_C_main.c" "c_C_main.c" "s_C_main.c" "x_C_main.c" "bigX_C_main.c")
-FT_MAIN_FILES=("d_ft_main.c" "i_ft_main.c" "u_ft_main.c" "c_ft_main.c" "s_ft_main.c" "x_ft_main.c" "bigX_ft_main.c")
+C_MAIN_FILES=("d_C_main.c" "i_C_main.c" "u_C_main.c" "c_C_main.c" "s_C_main.c" "x_C_main.c" "bigX_C_main.c" "percentage_C_main.c")
+FT_MAIN_FILES=("d_ft_main.c" "i_ft_main.c" "u_ft_main.c" "c_ft_main.c" "s_ft_main.c" "x_ft_main.c" "bigX_ft_main.c" "percentage_ft_main.c")
 
 #Create the logs directory if it does not exist yet.
 
