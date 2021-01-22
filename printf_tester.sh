@@ -56,10 +56,12 @@ else
 	rm -f tmp/*
 fi
 
-#Create the wrong_test_cases directory inside the logs directory if it does not exists yet. If it does exists, delete the contents.
+#Create the wrong_test_cases file inside the logs directory if it does not exists yet.
 
 if [[ -f logs/wrong_test_cases ]]; then
 	rm -f logs/wrong_test_cases
+else
+	touch logs/wrong_test_cases
 fi
 
 #Run "make" and check whether the libftprintf.a file is created
@@ -179,7 +181,7 @@ else
 	echo -e "${RED}You failed $count_failed tests ($(($total_tests - $count_failed))/$total_tests). See logs/wrong_test_cases.${RESET}"
 fi
 
-#Delete unnecessary files
+#Delete unnecessary files and directories
 rm -rdf $OUTPUT tmp
 
 #Delete al object files
