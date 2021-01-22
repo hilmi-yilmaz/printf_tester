@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   id_C_main.c                                        :+:    :+:            */
+/*   d_C_main.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/30 18:36:08 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2021/01/07 14:05:04 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/22 18:33:49 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -477,7 +477,7 @@ int		main(void)
 	fprintf(fd, "%d\n", res);
 	res = printf("%3d\n", 0);//189
 	fprintf(fd, "%d\n", res);
-	res = printf("%-3d\n", 0);//189
+	res = printf("%-3d\n", 0);//190
 	fprintf(fd, "%d\n", res);
 	
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/01 17:11:33 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2021/01/07 16:24:03 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/22 18:37:02 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,10 +269,10 @@ int		main(void)
 	fprintf(fd, "%d\n", res);
 	res = printf("%.s\n", "(null)");//96
 	fprintf(fd, "%d\n", res);
-	res = printf("%.0s\n", "(null)");//72
+	res = printf("%.0s\n", "(null)");//97
 	fprintf(fd, "%d\n", res);
 
-	res = printf("%*.*s is the best %*.*s\n", -15, -20, "utrecht", -1, -4, "yoooo");//73
+	res = printf("%*.*s is the best %*.*s\n", -15, -20, "utrecht", -1, -4, "yoooo");//98
 	fprintf(fd, "%d\n", res);
 
 	return (0);

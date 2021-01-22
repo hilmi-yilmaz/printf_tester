@@ -6,7 +6,7 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/07 13:34:18 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2021/01/07 14:05:06 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/01/22 18:06:48 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,19 @@ int		main(void)
 	** Print extreme values
 	*/
 	
-	res = printf("%15.5u\n", (unsigned int)3147483647);//105
+	res = printf("%15.5u\n", (unsigned int)3147483647);//25
 	fprintf(fd, "%d\n", res);
-	res = printf("%15.15u\n", (unsigned int)3147483647);//106
+	res = printf("%15.15u\n", (unsigned int)3147483647);//26
 	fprintf(fd, "%d\n", res);
 
-	res = printf("%-15.5u\n", (unsigned int)3147483647);//109
+	res = printf("%-15.5u\n", (unsigned int)3147483647);//27
 	fprintf(fd, "%d\n", res);
-	res = printf("%-15.15u\n", (unsigned int)3147483647);//110
+	res = printf("%-15.15u\n", (unsigned int)3147483647);//28
 	fprintf(fd, "%d\n", res);
 	
-	res = printf("%015.5u\n", (unsigned int)4294967295);//113
+	res = printf("%015.5u\n", (unsigned int)4294967295);//29
 	fprintf(fd, "%d\n", res);
-	res = printf("%015.15u\n", (unsigned int)4294967295);//114
+	res = printf("%015.15u\n", (unsigned int)4294967295);//30
 	fprintf(fd, "%d\n", res);
 
 	return (0);

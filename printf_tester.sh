@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #User defined variables
-HEADER_PATH="/home/hilmi/Desktop/codam/curriculum/printf_tester/src/src" #the path to your ft_printf.h file. Make sure your headerfile is called ft_printf.h.
+HEADER_PATH="ADD YOUR PATH TO ft_printf.h. IT SHOULD BE AN ABSOLUTE PATH FOR EXAMPLE: /home/hilmi/printf_tester/src/" #the path to your ft_printf.h file. Make sure your headerfile is called ft_printf.h.
 
 # Colors
 GREEN="\033[1;32m"
@@ -174,7 +174,7 @@ echo ""
 
 #Amount of tests wrong
 count_failed=$(grep -w 'res\|res_ft' logs/wrong_test_cases | wc -l)
-total_tests=$(grep -r "//" ./mains/*C_main.c | wc -l)
+total_tests=$(grep -r "//" ./mains/*C_main.c ./mains/p_main.c| wc -l)
 if [[ "$count_failed" == "0" ]]; then
 	echo -e "${GREEN}You passed all tests ($total_tests/$total_tests).${RESET}"
 else
