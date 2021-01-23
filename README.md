@@ -19,8 +19,8 @@ It only tests for:<br>
 3. Width and precisions (also with the '*' option).
 
 **The output of printf on Linux and MacOS is different. Be aware of this. Make sure you test it on the Imacs! Below you can find some cases (not all) in which Linux and MacOS differ:**
-```sh
-Precision used with s-conversion and NULL as input: printf("%.2s", NULL);
+```C
+Precision used with s-conversion with NULL as input: printf("%.2s", NULL);
 Width used with %-conversion: printf("%3%");
 NULL as input with p-conversion: printf("%p", NULL);
 ```
