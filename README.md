@@ -16,7 +16,7 @@ This is a tester for the ft_printf project in 42's curriculum. It contains 800+ 
 It only tests for:<br>
 1. "cspdiuxX%" conversions.
 2. "0-" flags.
-3. Width and precisions (also with the '*' option).
+3. Width and precision (also with the '*' option).
 
 **The output of printf on Linux and MacOS is different. Be aware of this. Make sure you test it on the Imacs! Below you can find some cases (not all) in which Linux and MacOS differ:**
 ```C
