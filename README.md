@@ -7,11 +7,11 @@
 
 ![Tester output](./tester_output.png)
 
-**Don't use this tester while writing your code. To be a good programmer, you should write your own tests. This tester is intended as a last check for your project, to see whether you missed some testcases.**
+>:warning:**Don't use this tester while writing your code. To be a good programmer, you should write your own tests. This tester is intended as a last check for your project, to see whether you missed some testcases.**
 
 ## :rocket: Description
 
-:warning:This is a tester for the ft_printf project in 42's curriculum. It contains 800+ tests and is made with the user in mind. It is very easy to use after a small setup. It is also very easy to see which test cases you failed (see figure above).
+This is a tester for the ft_printf project in 42's curriculum. It contains 800+ tests and is made with the user in mind. It is very easy to use after a small setup. It is also very easy to see which test cases you failed (see figure above).
 
 It only tests for:<br>
 1. "cspdiuxX%" conversions.
@@ -50,6 +50,11 @@ To run the tester, simply run:
 ```
 
 In the **logs/wrong_test_cases** file you can find all the testcases for which your project failed.
+
+## :compass: Roadmap
+- Add more testcases.
+- Improve error messages.
+- Add functionality to choose which conversion to test.
 
 ## :mailbox: Contribute
 
