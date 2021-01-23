@@ -2,11 +2,12 @@
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/hilmi-yilmaz/printf_tester?logo=GitHub)
 ![GitHub last commit](https://img.shields.io/github/last-commit/hilmi-yilmaz/printf_tester)
-![GitHub all releases](https://img.shields.io/github/downloads/hilmi-yilmaz/printf_tester/total)
 ![GitHub issues](https://img.shields.io/github/issues-raw/hilmi-yilmaz/printf_tester)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ![Tester output](./tester_output.png)
+
+**Don't use this tester while writing your code. To be a good programmer, you should write your own tests. This tester is intended as a last check for your project, to see whether you missed some testcases.**
 
 ## Description
 
@@ -17,7 +18,12 @@ It only tests for:<br>
 2. "0-" flags.
 3. Width and precisions (also with the '*' option).
 
-**Don't use this tester while writing your code. To be a good programmer, you should write your own tests. This tester is intended as a last check for your project, to see whether you missed some testcases.**
+**The output of printf on Linux and MacOS is different. Be aware of this. Make sure you test it on the Imacs! Below you can find some cases (not all) in which Linux and MacOS differ:**
+```sh
+Precision used with s-conversion and NULL as input: printf("%.2s", NULL);
+Width used with %-conversion: printf("%3%");
+NULL as input with p-conversion: printf("%p", NULL);
+```
 
 ## Installation and Setup
 
@@ -42,6 +48,8 @@ To run the tester, simply run:
 ```sh
 ./printf_tester.sh
 ```
+
+In the **logs/wrong_test_cases** file you can find all the testcases for which your project failed.
 
 ## Contribute
 
