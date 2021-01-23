@@ -1,0 +1,51 @@
+# Printf_tester
+
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/hilmi-yilmaz/printf_tester?logo=GitHub)
+![GitHub last commit](https://img.shields.io/github/last-commit/hilmi-yilmaz/printf_tester)
+![GitHub all releases](https://img.shields.io/github/downloads/hilmi-yilmaz/printf_tester/total)
+![GitHub issues](https://img.shields.io/github/issues-raw/hilmi-yilmaz/printf_tester)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+![Tester output](./tester_output.png)
+
+## Description
+
+This is a tester for the ft_printf project in 42's curriculum. It contains 800+ tests and is made with the user in mind. It is very easy to use after a small setup. It is also very easy to see which test cases you failed (see figure above).
+
+It only tests for:<br>
+1. "cspdiuxX%" conversions.
+2. "0-" flags.
+3. Width and precisions (also with the '*' option).
+
+**Don't use this tester while writing your code. To be a good programmer, you should write your own tests. This tester is intended as a last check for your project, to see whether you missed some testcases.**
+
+## Installation and Setup
+
+Clone this repository and go inside the project folder. Create a new directory called "src".
+
+```sh
+mkdir src
+```
+
+Copy your ft_printf project files into the src/ directory. Now open the printf_tester.sh file and put the absolute path to your headerfile in line 4. For me it was something like:
+
+```sh
+HEADER_PATH="/home/hilmi/curriculum/printf_tester/src"
+```
+
+**Make sure your headerfile is called ft_printf.h**.
+
+## Usage
+
+To run the tester, simply run:
+
+```sh
+./printf_tester.sh
+```
+
+## Contribute
+
+Found a bug? Ran into a specific problem? Missing a feature? Or you have some more testcases? Feel free to **file a new issue** with a respective title and description on the [issue page](https://github.com/hilmi-yilmaz/printf_tester/issues). You can also ask questions in [GitHub Discussion](https://github.com/hilmi-yilmaz/printf_tester/discussions). 
+
+## License
+[MIT](https://opensource.org/licenses/MIT)

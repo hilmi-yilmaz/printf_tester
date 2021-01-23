@@ -40,14 +40,6 @@ else
 	rm -f logs/results/*
 fi
 
-#Create the valgrind directory inside the logs directory if it does not exists yet. If it does exists, delete the contents.
-
-if [[ ! -d logs/valgrind ]]; then
-	mkdir logs/valgrind
-else
-	rm -f logs/valgrind/*
-fi
-
 #Create the tmp directory inside the logs directory if it does not exists yet. If it does exists, delete the contents.
 
 if [[ ! -d tmp ]]; then
