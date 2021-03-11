@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   id_C_main.c                                        :+:    :+:            */
+/*   i_ft_main.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/30 18:36:08 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2021/01/07 21:36:33 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/03/11 10:32:54 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+int	ft_printf(const char *fmt, ...);
 
 int		main(void)
 {

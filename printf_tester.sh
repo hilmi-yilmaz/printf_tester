@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#User defined variables
-HEADER_PATH="ADD YOUR PATH TO ft_printf.h. IT SHOULD BE AN ABSOLUTE PATH FOR EXAMPLE: /home/hilmi/printf_tester/src/" #the path to your ft_printf.h file. Make sure your headerfile is called ft_printf.h.
-
 # Colors
 GREEN="\033[1;32m"
 RED="\033[1;31m"
@@ -110,7 +107,7 @@ for i in ${!C_MAIN_FILES[@]}; do
 	$CC $FLAGS mains/${C_MAIN_FILES[$i]} -o $OUTPUT && ./$OUTPUT > logs/results/${c_prefix}_printed
 
 	#Run the program with own function and redirect the output to the 'logs/results' directory
-	$CC $FLAGS -I$HEADER_PATH -fsanitize=address -g mains/${FT_MAIN_FILES[$i]} src/libftprintf.a -o $OUTPUT
+	$CC $FLAGS -fsanitize=address -g mains/${FT_MAIN_FILES[$i]} src/libftprintf.a -o $OUTPUT
 	./$OUTPUT > logs/results/${ft_prefix}_printed
 	if [[ "$?" != 0 ]]; then
 		echo -e "	${RED}Compilation error. Fix these errors before continuing.${RESET}"
@@ -142,7 +139,7 @@ done
 
 #Testing with %p specifier
 echo -e "${CYAN_B}Running p test...${RESET}"
-$CC $FLAGS -I$HEADER_PATH -fsanitize=address -g mains/p_main.c src/libftprintf.a -o $OUTPUT
+$CC $FLAGS -fsanitize=address -g mains/p_main.c src/libftprintf.a -o $OUTPUT
 ./$OUTPUT > logs/results/p_ft_printed
 	
 #Check differences in printed text for %p

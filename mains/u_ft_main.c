@@ -6,14 +6,15 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/07 13:35:58 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2021/01/22 18:07:19 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/03/11 10:32:26 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "ft_printf.h"
+
+int	ft_printf(const char *fmt, ...);
 
 int		main(void)
 {

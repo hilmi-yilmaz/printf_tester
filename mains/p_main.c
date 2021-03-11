@@ -6,13 +6,14 @@
 /*   By: hyilmaz <hyilmaz@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/11 22:32:26 by hyilmaz       #+#    #+#                 */
-/*   Updated: 2021/01/12 12:27:08 by hyilmaz       ########   odam.nl         */
+/*   Updated: 2021/03/11 10:32:42 by hyilmaz       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+int	ft_printf(const char *fmt, ...);
 
 int		main(void)
 {
@@ -61,72 +62,72 @@ int		main(void)
 	*/
 
     res_c = fprintf(fd_c_print, "%p\n", &a);
-	res_ft = ft_printf("%p\n", &a);//1
+	res_ft = ft_printf("%p\n", &a);//1 -- int a = 0;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%.p\n", &a);
-	res_ft = ft_printf("%.p\n", &a);//2
+	res_ft = ft_printf("%.p\n", &a);//2 -- int a = 0;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
 	res_c = fprintf(fd_c_print, "%20p\n", &a);
-	res_ft = ft_printf("%20p\n", &a);//3
+	res_ft = ft_printf("%20p\n", &a);//3 -- int a = 0;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%20.p\n", &a);
-	res_ft = ft_printf("%20.p\n", &a);//4
+	res_ft = ft_printf("%20.p\n", &a);//4 -- int a = 0;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%-20p\n", &a);
-	res_ft = ft_printf("%-20p\n", &a);//5
+	res_ft = ft_printf("%-20p\n", &a);//5 -- int a = 0;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
     res_c = fprintf(fd_c_print, "%-20.p\n", &a);
-	res_ft = ft_printf("%-20.p\n", &a);//6
+	res_ft = ft_printf("%-20.p\n", &a);//6 -- int a = 0;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
 	res_c = fprintf(fd_c_print, "%10p\n", &a);
-	res_ft = ft_printf("%10p\n", &a);//7
+	res_ft = ft_printf("%10p\n", &a);//7 -- int a = 0;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%10.p\n", &a);
-	res_ft = ft_printf("%10.p\n", &a);//8
+	res_ft = ft_printf("%10.p\n", &a);//8 -- int a = 0;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-10p\n", &a);
-	res_ft = ft_printf("%-10p\n", &a);//9
+	res_ft = ft_printf("%-10p\n", &a);//9 -- int a = 0;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-10.p\n", &a);
-	res_ft = ft_printf("%-10.p\n", &a);//10
+	res_ft = ft_printf("%-10.p\n", &a);//10 -- int a = 0;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%14p\n", &a);
-	res_ft = ft_printf("%14p\n", &a);//11
+	res_ft = ft_printf("%14p\n", &a);//11 -- int a = 0;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%14.p\n", &a);
-	res_ft = ft_printf("%14.p\n", &a);//12
+	res_ft = ft_printf("%14.p\n", &a);//12 -- int a = 0;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-14p\n", &a);
-	res_ft = ft_printf("%-14p\n", &a);//13
+	res_ft = ft_printf("%-14p\n", &a);//13 -- int a = 0;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-14.p\n", &a);
-	res_ft = ft_printf("%-14.p\n", &a);//14
+	res_ft = ft_printf("%-14.p\n", &a);//14 -- int a = 0;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
@@ -135,72 +136,72 @@ int		main(void)
 	*/
 
     res_c = fprintf(fd_c_print, "%p\n", &b);
-	res_ft = ft_printf("%p\n", &b);//15
+	res_ft = ft_printf("%p\n", &b);//15 -- b = 'A';
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%.p\n", &b);
-	res_ft = ft_printf("%.p\n", &b);//16
+	res_ft = ft_printf("%.p\n", &b);//16 -- b = 'A';
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
 	res_c = fprintf(fd_c_print, "%20p\n", &b);
-	res_ft = ft_printf("%20p\n", &b);//17
+	res_ft = ft_printf("%20p\n", &b);//17 -- b = 'A';
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%20.p\n", &b);
-	res_ft = ft_printf("%20.p\n", &b);//18
+	res_ft = ft_printf("%20.p\n", &b);//18 -- b = 'A';
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%-20p\n", &b);
-	res_ft = ft_printf("%-20p\n", &b);//19
+	res_ft = ft_printf("%-20p\n", &b);//19 -- b = 'A';
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
     res_c = fprintf(fd_c_print, "%-20.p\n", &b);
-	res_ft = ft_printf("%-20.p\n", &b);//20
+	res_ft = ft_printf("%-20.p\n", &b);//20 -- b = 'A';
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
 	res_c = fprintf(fd_c_print, "%10p\n", &b);
-	res_ft = ft_printf("%10p\n", &b);//21
+	res_ft = ft_printf("%10p\n", &b);//21 -- b = 'A';
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%10.p\n", &b);
-	res_ft = ft_printf("%10.p\n", &b);//22
+	res_ft = ft_printf("%10.p\n", &b);//22 -- b = 'A';
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-10p\n", &b);
-	res_ft = ft_printf("%-10p\n", &b);//23
+	res_ft = ft_printf("%-10p\n", &b);//23 -- b = 'A';
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-10.p\n", &b);
-	res_ft = ft_printf("%-10.p\n", &b);//24
+	res_ft = ft_printf("%-10.p\n", &b);//24 -- b = 'A';
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%14p\n", &b);
-	res_ft = ft_printf("%14p\n", &b);//25
+	res_ft = ft_printf("%14p\n", &b);//25 -- b = 'A';
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%14.p\n", &b);
-	res_ft = ft_printf("%14.p\n", &b);//26
+	res_ft = ft_printf("%14.p\n", &b);//26 -- b = 'A';
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-14p\n", &b);
-	res_ft = ft_printf("%-14p\n", &b);//27
+	res_ft = ft_printf("%-14p\n", &b);//27 -- b = 'A';
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-14.p\n", &b);
-	res_ft = ft_printf("%-14.p\n", &b);//28
+	res_ft = ft_printf("%-14.p\n", &b);//28 -- b = 'A';
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
@@ -209,72 +210,72 @@ int		main(void)
 	*/
 
     res_c = fprintf(fd_c_print, "%p\n", c);
-	res_ft = ft_printf("%p\n", c);//29
+	res_ft = ft_printf("%p\n", c);//29 -- c = "hilmi";
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%.p\n", c);
-	res_ft = ft_printf("%.p\n", c);//30
+	res_ft = ft_printf("%.p\n", c);//30 -- c = "hilmi";
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
 	res_c = fprintf(fd_c_print, "%20p\n", c);
-	res_ft = ft_printf("%20p\n", c);//31
+	res_ft = ft_printf("%20p\n", c);//31 -- c = "hilmi";
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%20.p\n", c);
-	res_ft = ft_printf("%20.p\n", c);//32
+	res_ft = ft_printf("%20.p\n", c);//32 -- c = "hilmi";
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%-20p\n", c);
-	res_ft = ft_printf("%-20p\n", c);//33
+	res_ft = ft_printf("%-20p\n", c);//33 -- c = "hilmi";
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
     res_c = fprintf(fd_c_print, "%-20.p\n", c);
-	res_ft = ft_printf("%-20.p\n", c);//34
+	res_ft = ft_printf("%-20.p\n", c);//34 -- c = "hilmi";
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
 	res_c = fprintf(fd_c_print, "%10p\n", c);
-	res_ft = ft_printf("%10p\n", c);//35
+	res_ft = ft_printf("%10p\n", c);//35 -- c = "hilmi";
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%10.p\n", c);
-	res_ft = ft_printf("%10.p\n", c);//36
+	res_ft = ft_printf("%10.p\n", c);//36 -- c = "hilmi";
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-10p\n", c);
-	res_ft = ft_printf("%-10p\n", c);//37
+	res_ft = ft_printf("%-10p\n", c);//37 -- c = "hilmi";
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-10.p\n", c);
-	res_ft = ft_printf("%-10.p\n", c);//38
+	res_ft = ft_printf("%-10.p\n", c);//38 -- c = "hilmi";
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%14p\n", c);
-	res_ft = ft_printf("%14p\n", c);//39
+	res_ft = ft_printf("%14p\n", c);//39 -- c = "hilmi";
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%14.p\n", c);
-	res_ft = ft_printf("%14.p\n", c);//40
+	res_ft = ft_printf("%14.p\n", c);//40 -- c = "hilmi";
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-14p\n", c);
-	res_ft = ft_printf("%-14p\n", c);//41
+	res_ft = ft_printf("%-14p\n", c);//41 -- c = "hilmi";
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-14.p\n", c);
-	res_ft = ft_printf("%-14.p\n", c);//42
+	res_ft = ft_printf("%-14.p\n", c);//42 -- c = "hilmi";
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
@@ -283,72 +284,72 @@ int		main(void)
 	*/
 
     res_c = fprintf(fd_c_print, "%p\n", d);
-	res_ft = ft_printf("%p\n", d);//43
+	res_ft = ft_printf("%p\n", d);//43 -- d = malloc(sizeof(char) * 10);
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%.p\n", d);
-	res_ft = ft_printf("%.p\n", d);//44
+	res_ft = ft_printf("%.p\n", d);//44 -- d = malloc(sizeof(char) * 10);
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
 	res_c = fprintf(fd_c_print, "%20p\n", d);
-	res_ft = ft_printf("%20p\n", d);//45
+	res_ft = ft_printf("%20p\n", d);//45 -- d = malloc(sizeof(char) * 10);
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%20.p\n", d);
-	res_ft = ft_printf("%20.p\n", d);//46
+	res_ft = ft_printf("%20.p\n", d);//46 -- d = malloc(sizeof(char) * 10);
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%-20p\n", d);
-	res_ft = ft_printf("%-20p\n", d);//47
+	res_ft = ft_printf("%-20p\n", d);//47 -- d = malloc(sizeof(char) * 10);
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
     res_c = fprintf(fd_c_print, "%-20.p\n", d);
-	res_ft = ft_printf("%-20.p\n", d);//48
+	res_ft = ft_printf("%-20.p\n", d);//48 -- d = malloc(sizeof(char) * 10);
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
 	res_c = fprintf(fd_c_print, "%10p\n", d);
-	res_ft = ft_printf("%10p\n", d);//49
+	res_ft = ft_printf("%10p\n", d);//49 -- d = malloc(sizeof(char) * 10);
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%10.p\n", d);
-	res_ft = ft_printf("%10.p\n", d);//50
+	res_ft = ft_printf("%10.p\n", d);//50 -- d = malloc(sizeof(char) * 10);
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-10p\n", d);
-	res_ft = ft_printf("%-10p\n", d);//51
+	res_ft = ft_printf("%-10p\n", d);//51 -- d = malloc(sizeof(char) * 10);
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-10.p\n", d);
-	res_ft = ft_printf("%-10.p\n", d);//52
+	res_ft = ft_printf("%-10.p\n", d);//52 -- d = malloc(sizeof(char) * 10);
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%14p\n", d);
-	res_ft = ft_printf("%14p\n", d);//53
+	res_ft = ft_printf("%14p\n", d);//53 -- d = malloc(sizeof(char) * 10);
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%14.p\n", d);
-	res_ft = ft_printf("%14.p\n", d);//54
+	res_ft = ft_printf("%14.p\n", d);//54 -- d = malloc(sizeof(char) * 10);
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-14p\n", d);
-	res_ft = ft_printf("%-14p\n", d);//55
+	res_ft = ft_printf("%-14p\n", d);//55 -- d = malloc(sizeof(char) * 10);
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-14.p\n", d);
-	res_ft = ft_printf("%-14.p\n", d);//56
+	res_ft = ft_printf("%-14.p\n", d);//56 -- d = malloc(sizeof(char) * 10);
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
@@ -357,72 +358,72 @@ int		main(void)
 	*/
 
     res_c = fprintf(fd_c_print, "%p\n", e);
-	res_ft = ft_printf("%p\n", e);//57
+	res_ft = ft_printf("%p\n", e);//57 -- e = NULL;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%.p\n", e);
-	res_ft = ft_printf("%.p\n", e);//58
+	res_ft = ft_printf("%.p\n", e);//58 -- e = NULL;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
 	res_c = fprintf(fd_c_print, "%20p\n", e);
-	res_ft = ft_printf("%20p\n", e);//59
+	res_ft = ft_printf("%20p\n", e);//59 -- e = NULL;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%20.p\n", e);
-	res_ft = ft_printf("%20.p\n", e);//60
+	res_ft = ft_printf("%20.p\n", e);//60 -- e = NULL;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%-20p\n", e);
-	res_ft = ft_printf("%-20p\n", e);//61
+	res_ft = ft_printf("%-20p\n", e);//61 -- e = NULL;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
     res_c = fprintf(fd_c_print, "%-20.p\n", e);
-	res_ft = ft_printf("%-20.p\n", e);//62
+	res_ft = ft_printf("%-20.p\n", e);//62 -- e = NULL;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 	
 	res_c = fprintf(fd_c_print, "%10p\n", e);
-	res_ft = ft_printf("%10p\n", e);//63
+	res_ft = ft_printf("%10p\n", e);//63 -- e = NULL;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%10.p\n", e);
-	res_ft = ft_printf("%10.p\n", e);//64
+	res_ft = ft_printf("%10.p\n", e);//64 -- e = NULL;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-10p\n", e);
-	res_ft = ft_printf("%-10p\n", e);//65
+	res_ft = ft_printf("%-10p\n", e);//65 -- e = NULL;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-10.p\n", e);
-	res_ft = ft_printf("%-10.p\n", e);//66
+	res_ft = ft_printf("%-10.p\n", e);//66 -- e = NULL;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%14p\n", e);
-	res_ft = ft_printf("%14p\n", e);//67
+	res_ft = ft_printf("%14p\n", e);//67 -- e = NULL;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
     res_c = fprintf(fd_c_print, "%14.p\n", e);
-	res_ft = ft_printf("%14.p\n", e);//68
+	res_ft = ft_printf("%14.p\n", e);//68 -- e = NULL;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-14p\n", e);
-	res_ft = ft_printf("%-14p\n", e);//69
+	res_ft = ft_printf("%-14p\n", e);//69 -- e = NULL;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
 	res_c = fprintf(fd_c_print, "%-14.p\n", e);
-	res_ft = ft_printf("%-14.p\n", e);//70
+	res_ft = ft_printf("%-14.p\n", e);//70 -- e = NULL;
 	fprintf(fd_c, "%d\n", res_c);
 	fprintf(fd_ft, "%d\n", res_ft);
 
