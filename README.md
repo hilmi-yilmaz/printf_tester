@@ -5,7 +5,7 @@
 ![GitHub issues](https://img.shields.io/github/issues-raw/hilmi-yilmaz/printf_tester)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-![Tester output](./tester_output.png)
+![Tester output](./imgs/tester_output.png)
 
 >:warning:**Don't use this tester while writing your code. To be a good programmer, you should write your own tests. This tester is intended as a last check for your project, to see whether you missed some testcases.**
 
@@ -27,34 +27,32 @@ NULL as input with p-conversion: printf("%p", NULL);
 
 ## :gear: Installation and Setup
 
-Clone this repository and go inside the project folder. Create a new directory called "src".
+Clone this repository and go inside the project folder. Now we are going to create a symbolic to your ft_printf project. This makes it easy to debug. You can just work on your original project and these symbolic links will follow the changes you make to your original code. To create a symbolic link, run the following command:
 
 ```sh
-mkdir src
+cp -rs ft_printf_folder path_to_printf_tester/src
 ```
-
-Copy your ft_printf project files into the src/ directory. Now open the printf_tester.sh file and put the absolute path to your headerfile in line 4. For me it was something like:
-
-```sh
-HEADER_PATH="/home/hilmi/curriculum/printf_tester/src"
-```
-
-**Make sure your headerfile is called ft_printf.h**.
 
 ## :joystick: Usage
 
-To run the tester, simply run:
+To run the tester on all testcases, simply run:
 
 ```sh
 ./printf_tester.sh
 ```
 
-In the **logs/wrong_test_cases** file you can find all the testcases for which your project failed.
+You can also choose a specific conversion test to run. In this case, it tests for the s-conversion:
+
+```sh
+./printf_tester.sh s
+```
+
+
+In the **logs/wrong_test_cases** file you can find all the testcases for which your project has failed.
 
 ## :compass: Roadmap
 - Add more testcases.
 - Improve error messages.
-- Add functionality to choose which conversion to test.
 
 ## :mailbox: Contribute
 
