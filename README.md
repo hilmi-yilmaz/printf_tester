@@ -5,7 +5,7 @@
 ![GitHub issues](https://img.shields.io/github/issues-raw/hilmi-yilmaz/printf_tester)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-![Tester output](./imgs/tester_output.png)
+![Tester output gif](./imgs/gif.gif)
 
 >:warning:**Don't use this tester while writing your code. To be a good programmer, you should write your own tests. This tester is intended as a last check for your project, to see whether you missed some testcases.**
 
