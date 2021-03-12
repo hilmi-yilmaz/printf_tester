@@ -17,14 +17,14 @@ FT_MAIN_FILES=("d_ft_main.c" "i_ft_main.c" "u_ft_main.c" "c_ft_main.c" "s_ft_mai
 
 # If commmand line arguments, run only a specific test
 if [[ -n "$1" ]]; then
-	if [[ "$1" == "d" || "$1" == "i" || "$1" == "u" || "$1" == "x" || "$1" == "X" || "$1" == "s" || "$1" == "c" || "$1" == "%" ]]; then
+	if [[ "$1" == "d" || "$1" == "i" || "$1" == "u" || "$1" == "x" || "$1" == "X" || "$1" == "s" || "$1" == "c" || "$1" == "percentage" ]]; then
 		C_MAIN_FILES=("${1}_C_main.c")
 		FT_MAIN_FILES=("${1}_ft_main.c")
 	elif [[ "$1" == "p" ]]; then
 		C_MAIN_FILES=()
 		FT_MAIN_FILES=()
 	else
-		echo "Run the tester as: ./printf_tester [d|i|u|x|X|s|c|p|%]"
+		echo "Run the tester as: ./printf_tester [d|i|u|x|X|s|c|p|percentage]"
 		exit 1
 	fi
 fi
@@ -195,6 +195,10 @@ elif [[ "$1"  == "p" ]]; then
 else
 	total_tests=$(grep -r "//" ./mains/${1}_C_main.c | wc -l)
 fi
+
+#Truncate the spaces
+count_failed=$(echo "$count_failed" | tr -d ' ')
+total_tests=$(echo "$total_tests" | tr -d ' ')
 
 # Show the statistics to the user
 if [[ "$count_failed" == "0" ]]; then
