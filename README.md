@@ -27,11 +27,17 @@ NULL as input with p-conversion: printf("%p", NULL);
 
 ## :gear: Installation and Setup
 
-Clone this repository and go inside the project folder. Now we are going to create a symbolic to your ft_printf project. This makes it easy to debug. You can just work on your original project and these symbolic links will follow the changes you make to your original code. To create a symbolic link, run the following command:
+Clone this repository and go inside the project folder. Now we are going to create a symbolic to your ft_printf project. This makes it easy to debug. You can just work on your original project and these symbolic links will follow the changes you make to your original code. To create a symbolic link, run the following command from inside the _printf_tester_ directory:
 
 ```sh
-cp -rs ft_printf_folder path_to_printf_tester/src
+ln -s path/to/your/ft_printf src
 ```
+
+:warning: **Make sure you call the directory _src_.**
+
+Your directory should look like this now:
+
+![After linking](./imgs/link.png)
 
 ## :joystick: Usage
 
